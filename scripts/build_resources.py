@@ -1,0 +1,585 @@
+"""Generate resources/pid2name.json and resources/property_list.html for all 135 Wikidata relations in FewRel (80) and Wiki-ZSL (113)."""
+
+import html
+import json
+import os
+
+# Official Wikidata property labels and descriptions used in FewRel (pid2name.json) and Wiki-ZSL (property_list.html)
+PROPERTIES = {
+    # --- 80 FewRel Relations (many shared with Wiki-ZSL) ---
+    "P6": [
+        "head of government",
+        "head of the executive power of this town, city, municipality, state, country, or other governmental body",
+    ],
+    "P17": [
+        "country",
+        "sovereign state of this item; don't use on humans",
+    ],
+    "P22": [
+        "father",
+        "male parent of the subject. For stepfather, use \"stepparent\" (P3448)",
+    ],
+    "P25": [
+        "mother",
+        "female parent of the subject. For stepmother, use \"stepparent\" (P3448)",
+    ],
+    "P26": [
+        "spouse",
+        "the subject has the object as their spouse (husband, wife, partner, etc.). Use \"unmarried partner\" (P451) for non-married companions",
+    ],
+    "P27": [
+        "country of citizenship",
+        "the object is a country that recognizes the subject as its citizen",
+    ],
+    "P31": [
+        "instance of",
+        "that class of which this subject is a particular example and member",
+    ],
+    "P39": [
+        "position held",
+        "subject currently or formerly holds the object position or public office",
+    ],
+    "P40": [
+        "child",
+        "subject has object as child. Do not use for stepchildren",
+    ],
+    "P57": [
+        "director",
+        "director(s) of film, TV-series, stageplay, video game or similar",
+    ],
+    "P58": [
+        "screenwriter",
+        "person(s) who wrote the script for subject item",
+    ],
+    "P59": [
+        "constellation",
+        "the area of the celestial sphere of which the subject is a part (from a scientific standpoint, not an astrological one)",
+    ],
+    "P84": [
+        "architect",
+        "person or architectural firm that designed this building",
+    ],
+    "P86": [
+        "composer",
+        "person(s) who wrote the music [for lyricist, use \"lyrics by\" (P676)]",
+    ],
+    "P101": [
+        "field of work",
+        "specialization of a person or organization; see P106 for the occupation",
+    ],
+    "P102": [
+        "member of political party",
+        "the political party of which this politician is or has been a member",
+    ],
+    "P105": [
+        "taxon rank",
+        "level in a taxonomic hierarchy",
+    ],
+    "P106": [
+        "occupation",
+        "occupation of a person; see also \"field of work\" (Property:P101), \"position held\" (Property:P39)",
+    ],
+    "P118": [
+        "league",
+        "league in which team or player plays or has played in",
+    ],
+    "P123": [
+        "publisher",
+        "organization or person responsible for publishing books, periodicals, games or software",
+    ],
+    "P127": [
+        "owned by",
+        "owner of the subject",
+    ],
+    "P131": [
+        "located in the administrative territorial entity",
+        "the item is located on the territory of the following administrative entity. Use P276 (location) for specifying locations that are non-administrative places and for items about events",
+    ],
+    "P135": [
+        "movement",
+        "literary, artistic, scientific or philosophical movement associated with this person or work",
+    ],
+    "P136": [
+        "genre",
+        "creative work's genre or an artist's field of work (P101). Use main subject (P921) to relate creative works to their topic",
+    ],
+    "P137": [
+        "operator",
+        "person, profession, or organization that operates the equipment, facility, or service; use country for diplomatic missions",
+    ],
+    "P140": [
+        "religion",
+        "religion of a person, organization or religious building, or associated with this subject",
+    ],
+    "P150": [
+        "contains administrative territorial entity",
+        "direct subdivisions of an administrative territorial entity",
+    ],
+    "P155": [
+        "follows",
+        "immediately prior item in a series of which the subject is a part [if the subject has replaced the preceding item, e.g. political offices, use \"replaces\" (P1365)]",
+    ],
+    "P156": [
+        "followed by",
+        "immediately following item in a series of which the subject is a part [if the subject has been replaced, e.g. political offices, use \"replaced by\" (P1366)]",
+    ],
+    "P159": [
+        "headquarters location",
+        "specific location where an organization's headquarters is or has been situated. Inverse property of \"occupant\" (P466)",
+    ],
+    "P175": [
+        "performer",
+        "actor, musician, band or other performer associated with this role or musical work",
+    ],
+    "P176": [
+        "manufacturer",
+        "manufacturer or producer of this product",
+    ],
+    "P177": [
+        "crosses",
+        "obstacle (body of water, road, ...) which this bridge crosses over or this tunnel goes under",
+    ],
+    "P178": [
+        "developer",
+        "organisation or person that developed the item",
+    ],
+    "P206": [
+        "located in or next to body of water",
+        "sea, lake or river",
+    ],
+    "P241": [
+        "military branch",
+        "branch to which this military unit, award, office, or person belongs, e.g. Royal Navy",
+    ],
+    "P264": [
+        "record label",
+        "brand and trademark associated with the marketing of music recordings and music videos",
+    ],
+    "P276": [
+        "location",
+        "location of the item, physical object or event is within. In case of an administrative entity use P131. In case of a distinct terrain feature use P706",
+    ],
+    "P306": [
+        "operating system",
+        "operating system (OS) on which a software works or the OS installed on hardware",
+    ],
+    "P355": [
+        "subsidiary",
+        "subsidiary of a company or organization, opposite of parent organization (P749)",
+    ],
+    "P361": [
+        "part of",
+        "object of which the subject is a part (it's not useful to link objects which are themselves parts of other objects already listed as parts of the subject). Inverse property of \"has part\" (P527, see also \"has parts of the class\" (P2670))",
+    ],
+    "P364": [
+        "original language of film or TV show",
+        "language in which a film or a performance work was originally created. Deprecated for written works; use P407 (\"language of work or name\") instead",
+    ],
+    "P400": [
+        "platform",
+        "platform for which a work was developed or released, or the specific platform version of a software product",
+    ],
+    "P403": [
+        "mouth of the watercourse",
+        "the body of water to which the watercourse drains",
+    ],
+    "P407": [
+        "language of work or name",
+        "language associated with this creative work (such as books, shows, songs, or websites) or a name (for persons use P103 and P1412)",
+    ],
+    "P410": [
+        "military rank",
+        "military rank achieved by a person (should usually have a \"start time\" qualifier), or military rank associated with a position",
+    ],
+    "P412": [
+        "voice type",
+        "person's voice type. expected values: soprano, mezzo-soprano, contralto, countertenor, tenor, baritone, bass (and derivatives)",
+    ],
+    "P413": [
+        "position played on team / speciality",
+        "position or specialism of a player on a team, e.g. Small Forward",
+    ],
+    "P449": [
+        "original broadcaster",
+        "network(s) or service(s) that originally broadcast a radio or television program",
+    ],
+    "P460": [
+        "said to be the same as",
+        "this item is said to be the same as that item, but it's uncertain or disputed",
+    ],
+    "P463": [
+        "member of",
+        "organization, club or musical group to which the subject belongs. Do not use for membership in ethnic or social groups, nor for holding a position such as a member of parliament (use P39 for that)",
+    ],
+    "P466": [
+        "occupant",
+        "person or organization occupying property",
+    ],
+    "P495": [
+        "country of origin",
+        "country of origin of this item (creative work, food, phrase, product, etc.)",
+    ],
+    "P527": [
+        "has part",
+        "part of this subject; inverse property of \"part of\" (P361). See also \"has parts of the class\" (P2670)",
+    ],
+    "P551": [
+        "residence",
+        "the place where the person is or has been, resident",
+    ],
+    "P641": [
+        "sport",
+        "sport that the subject participates or participated in or is associated with",
+    ],
+    "P674": [
+        "characters",
+        "characters which appear in this item (like plays, operas, operettas, books, comics, films, TV series, video games)",
+    ],
+    "P706": [
+        "located in/on physical feature",
+        "located on the specified landform. Should not be used for administrative subdivisions (use P131) or for mountain ranges (use P4552)",
+    ],
+    "P710": [
+        "participant",
+        "person, group of people or organization (object) that actively takes/took part in an event or process (subject)",
+    ],
+    "P740": [
+        "location of formation",
+        "location where a group or organization was formed",
+    ],
+    "P750": [
+        "distributed by",
+        "distributor of a creative work; distributor for a record label",
+    ],
+    "P800": [
+        "notable work",
+        "notable scientific, artistic or literary work, or other work of significance among subject's works",
+    ],
+    "P921": [
+        "main subject",
+        "primary topic of a work (see also P180: depicts)",
+    ],
+    "P931": [
+        "place served by transport hub",
+        "territorial entity or entities served by this transport hub (airport, train station, etc.)",
+    ],
+    "P937": [
+        "work location",
+        "location where persons or organisations were actively participating in employment, business or other work",
+    ],
+    "P974": [
+        "tributary",
+        "stream or river that flows into this main stem (or parent) river",
+    ],
+    "P991": [
+        "successful candidate",
+        "person(s) elected in the election",
+    ],
+    "P1001": [
+        "applies to jurisdiction",
+        "the item (an institution, law, public office ...) or statement belongs to or has power over or applies to the value (a territorial jurisdiction: a country, state, municipality, ...)",
+    ],
+    "P1303": [
+        "instrument",
+        "musical instrument that a person plays",
+    ],
+    "P1344": [
+        "participant in",
+        "event in which a person or organization was/is a participant; inverse of P710 or P1923",
+    ],
+    "P1346": [
+        "winner",
+        "winner of an event - do not use for wars or battles, nor for awards (use P166 instead)",
+    ],
+    "P1408": [
+        "licensed to broadcast to",
+        "place that a radio/TV station is licensed/required to broadcast to",
+    ],
+    "P1411": [
+        "nominated for",
+        "award nomination received by a person, organisation or creative work (inspired from \"award received\" (Property:P166))",
+    ],
+    "P1435": [
+        "heritage designation",
+        "heritage designation of a cultural or natural site",
+    ],
+    "P1877": [
+        "after a work by",
+        "artist whose work strongly inspired/was copied in this item",
+    ],
+    "P1923": [
+        "participating team",
+        "like 'Participant' (P710) but for teams. For an event like a cycle race or a football match, you can use this property to list the teams and P710 to list the individuals",
+    ],
+    "P2094": [
+        "competition class",
+        "official classification by a regulating body under which the subject (events, teams, participants, or equipment) qualifies for inclusion",
+    ],
+    "P3373": [
+        "sibling",
+        "the subject and the object have at least one common parent (brother, sister, etc. including half-siblings); use \"relative\" (P1038) for siblings-in-law (brother-in-law, sister-in-law, etc.) and step-siblings (step-brothers, step-sisters, etc.)",
+    ],
+    "P3450": [
+        "sports season of league or competition",
+        "league or competition of which the subject is a season. Use P361 (part of) for seasons of a team",
+    ],
+    "P4552": [
+        "mountain range",
+        "range or subrange to which the geographical item belongs",
+    ],
+    # --- 55 Additional Wiki-ZSL Relations ---
+    "P19": [
+        "place of birth",
+        "most specific known (e.g. city instead of country, or hospital instead of city) birth location of a person, animal or fictional character",
+    ],
+    "P20": [
+        "place of death",
+        "most specific known (e.g. city instead of country, or hospital instead of city) death location of a person, animal or fictional character",
+    ],
+    "P30": [
+        "continent",
+        "continent of which the subject is a part",
+    ],
+    "P36": [
+        "capital",
+        "primary city of a country, state or other type of administrative territorial entity",
+    ],
+    "P37": [
+        "official language",
+        "language designated as official by this item",
+    ],
+    "P47": [
+        "shares border with",
+        "countries or administrative subdivisions of equal level that this item borders, either by land or water",
+    ],
+    "P50": [
+        "author",
+        "main creator(s) of a written work (use on works, not humans)",
+    ],
+    "P53": [
+        "family",
+        "family, dynasty or noble house to which the subject belongs",
+    ],
+    "P54": [
+        "member of sports team",
+        "sports teams or clubs that the subject currently represents or formerly represented",
+    ],
+    "P69": [
+        "educated at",
+        "educational institution attended by subject",
+    ],
+    "P81": [
+        "connecting line",
+        "railway line(s) that the subject is connected to",
+    ],
+    "P108": [
+        "employer",
+        "person or organization for which the subject works",
+    ],
+    "P112": [
+        "founded by",
+        "founder or co-founder of this organization, religion or place",
+    ],
+    "P121": [
+        "item operated",
+        "equipment, installation or service operated by the subject",
+    ],
+    "P138": [
+        "named after",
+        "entity or event that inspired the subject's name, or namesake (in at least one language)",
+    ],
+    "P144": [
+        "based on",
+        "the work(s) used as the basis for subject item",
+    ],
+    "P161": [
+        "cast member",
+        "actor in the subject production [use \"character role\" (P453) and/or \"name of the character role\" (P4633) as qualifiers] [use \"voice actor\" (P725) for voice-only role]",
+    ],
+    "P162": [
+        "producer",
+        "person(s) or organization(s) who produced the film, musical work, theatrical production, etc. (for film, not executive producer, associate producer, etc.)",
+    ],
+    "P166": [
+        "award received",
+        "award or recognition received by a person, organisation or creative work",
+    ],
+    "P170": [
+        "creator",
+        "maker of this creative work or other object (where no more specific property exists)",
+    ],
+    "P179": [
+        "part of the series",
+        "series which contains the subject",
+    ],
+    "P186": [
+        "made from material",
+        "material the subject or the object is made of or derived from",
+    ],
+    "P190": [
+        "twinned administrative body",
+        "twin towns, sister cities, twinned municipalities and other localities that have a partnership or cooperative agreement, either formally or informally acknowledged by their governments",
+    ],
+    "P272": [
+        "production company",
+        "company that produced this film, audio or performing arts work",
+    ],
+    "P279": [
+        "subclass of",
+        "all instances of these items are instances of those items; this item is a class (subset) of that item. Not to be confused with P31 (instance of)",
+    ],
+    "P360": [
+        "is a list of",
+        "that class of which all items listed in this list are an instance or subclass",
+    ],
+    "P366": [
+        "use",
+        "main use of the subject (includes current and former usage)",
+    ],
+    "P376": [
+        "located on astronomical body",
+        "astronomical body on which the feature or the item is situated",
+    ],
+    "P397": [
+        "parent astronomical body",
+        "major astronomical body the item belongs to",
+    ],
+    "P425": [
+        "field of this occupation",
+        "activity or domain corresponding to this occupation (use only for occupations - for people use Property:P101, for companies use P452)",
+    ],
+    "P452": [
+        "industry",
+        "industry of company or organization",
+    ],
+    "P461": [
+        "opposite of",
+        "item that is the antonym or opposite of this item",
+    ],
+    "P530": [
+        "diplomatic relation",
+        "countries with which this country has diplomatic relations",
+    ],
+    "P569": [
+        "date of birth",
+        "date on which the subject was born",
+    ],
+    "P570": [
+        "date of death",
+        "date on which the subject died",
+    ],
+    "P571": [
+        "inception",
+        "date or point in time when the subject came into existence as defined",
+    ],
+    "P577": [
+        "publication date",
+        "date or point in time when a work was first published or released",
+    ],
+    "P607": [
+        "conflict",
+        "battles, wars or other military engagements in which the person or item participated",
+    ],
+    "P647": [
+        "drafted by",
+        "sports team that drafted a player",
+    ],
+    "P676": [
+        "lyrics by",
+        "author of song lyrics; also use Property:P86 (composer) for music",
+    ],
+    "P734": [
+        "family name",
+        "part of full name of person",
+    ],
+    "P735": [
+        "given name",
+        "first name or another given name of this person; values used with the property should not link disambiguations nor family names",
+    ],
+    "P737": [
+        "influenced by",
+        "this person, idea, etc. is informed by that other person, idea, etc., e.g.います Heidegger by Husserl",
+    ],
+    "P802": [
+        "student",
+        "notable student(s) of the subject individual",
+    ],
+    "P840": [
+        "narrative location",
+        "the narrative of the work is set in this location",
+    ],
+    "P1056": [
+        "product or material produced",
+        "material or product produced by a government agency, business, industry, facility, or process",
+    ],
+    "P1080": [
+        "from narrative universe",
+        "fictional universe in which the subject appears",
+    ],
+    "P1269": [
+        "facet of",
+        "topic of which this item is an aspect, item that offers a broader perspective on the same topic",
+    ],
+    "P1365": [
+        "replaces",
+        "person, state or item replaced. Use \"follows\" (P155) if the previous item was not replaced and \"preceded by\" (P156) if the item is part of a series",
+    ],
+    "P1412": [
+        "languages spoken, written or signed",
+        "language(s) that a person or a people speaks, writes or signs, including the native language(s)",
+    ],
+    "P1552": [
+        "has quality",
+        "the entity has an inherent or distinguishing non-material characteristic",
+    ],
+    "P1589": [
+        "lowest point",
+        "point with lowest elevation in a region, path, etc.",
+    ],
+    "P1889": [
+        "different from",
+        "item that is different from another item, with which it may be confused",
+    ],
+    "P2389": [
+        "organization directed by the office or position",
+        "organization that a person or position directs or heads",
+    ],
+    "P2416": [
+        "sports discipline competed in",
+        "sport discipline in which the subject participates",
+    ],
+}
+
+# Fix typo in P737 description
+PROPERTIES["P737"][1] = (
+    "this person, idea, etc. is informed by that other person, idea, etc., e.g. Heidegger by Husserl"
+)
+
+os.makedirs("resources", exist_ok=True)
+
+with open("resources/pid2name.json", "w", encoding="utf-8") as f:
+    json.dump(PROPERTIES, f, indent=2, ensure_ascii=False)
+
+# Also generate resources/property_list.html in the exact table structure parsed by ZS-BERT
+rows = []
+for pid, (label, desc) in sorted(
+    PROPERTIES.items(), key=lambda x: int(x[0][1:])
+):
+    rows.append(
+        f"<tr><td><a href='https://www.wikidata.org/wiki/Property:{pid}'>{pid}</a></td>"
+        f"<td>{html.escape(label)}</td>"
+        f"<td>{html.escape(desc)}</td>"
+        f"<td></td><td>item</td></tr>"
+    )
+
+html_content = (
+    "<!DOCTYPE html>\n<html><head><meta charset='utf-8'><title>Wikidata Property List</title></head>\n"
+    "<body><table class='wikitable sortable'>\n"
+    "<thead><tr><th>ID</th><th>label</th><th>description</th><th>aliases</th><th>data type</th></tr></thead>\n"
+    "<tbody>\n" + "\n".join(rows) + "\n</tbody></table></body></html>\n"
+)
+
+with open("resources/property_list.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print(f"Generated resources/pid2name.json and resources/property_list.html with {len(PROPERTIES)} properties.")

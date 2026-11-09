@@ -1,0 +1,22 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Preprocessed & raw large datasets (mounted via Kaggle Datasets on Kaggle)
+data/
+fewrel_dataset.json
+wikizsl_dataset.json
+*NLP.pdf
+
+# Training logs, summaries, and model checkpoints
+*.log
+*.pt
+*.pth
+*.bin
+*.ckpt
+training_summary_*.json
+
+# Jupyter Notebook checkpoints & temporary files
+.ipynb_checkpoints/
+temp_zs_bert/
