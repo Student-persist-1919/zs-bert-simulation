@@ -52,9 +52,10 @@ def main():
     parser.add_argument("--n_unseen", type=int, default=10, help="number of unseen relations (paper default: 10)")
     parser.add_argument("--dist_func", type=str, default="inner", help="distance computing function: inner, euclidian, cosine")
     parser.add_argument("--data_path", type=str, default="../data/wiki_all.json", help="path to wiki_all.json")
+    parser.add_argument("--eval_batch_size", type=int, default=256, help="evaluation batch size (default: 256)")
     parser.add_argument("--log_every", type=int, default=500, help="log detailed training metrics every N steps")
     parser.add_argument("--fp16", action="store_true", help="enable AMP mixed precision for faster training on T4 GPU")
-    args = parser.parse_args()
+    args, _ = parser.parse_known_args()
 
     random.seed(args.seed)
     np.random.seed(args.seed)
@@ -116,7 +117,7 @@ def main():
     testset = FewRelDataset("test", test_data, pid2vec, property2idx)
     testloader = DataLoader(
         testset,
-        batch_size=256,
+        batch_size=args.eval_batch_size,
         collate_fn=create_mini_batch,
     )
 

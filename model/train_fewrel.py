@@ -57,6 +57,7 @@ def main():
     parser.add_argument("--gamma", type=float, default=7.5, help="margin factor gamma (paper default: 7.5)")
     parser.add_argument("--alpha", type=float, default=0.4, help="balance coefficient alpha (paper default: 0.4)")
     parser.add_argument("--batch_size", type=int, default=4, help="batch size (paper default: 4)")
+    parser.add_argument("--eval_batch_size", type=int, default=256, help="evaluation batch size (default: 256)")
     parser.add_argument("--epochs", type=int, default=10, help="training epochs (paper default: 10)")
     parser.add_argument("--lr", type=float, default=5e-6, help="learning rate (paper default: 5e-6)")
     parser.add_argument("--n_unseen", type=int, default=10, help="number of unseen relations (paper default: 10)")
@@ -65,7 +66,7 @@ def main():
     parser.add_argument("--log_every", type=int, default=500, help="log detailed training metrics every N steps")
     parser.add_argument("--fp16", action="store_true", help="enable AMP mixed precision for faster training on T4 GPU")
     parser.add_argument("--summary_out", type=str, default="training_summary_fewrel.json", help="output JSON summary path")
-    args = parser.parse_args()
+    args, _ = parser.parse_known_args()
 
     random.seed(args.seed)
     np.random.seed(args.seed)
@@ -94,7 +95,7 @@ def main():
     print(len(test_data), flush=True)
 
     BERT_MODEL_NAME = "bert-large-cased"
-    config = BertConfig.from_pretrained(BERT_MODEL_NAME, num_labels=len( set(train_keys)))
+    config = BertConfig.from_pretrained(BERT_MODEL_NAME, num_labels=len(set(train_keys)))
     config.pretrained_model_name = BERT_MODEL_NAME
     config.num_labels = len(set(train_keys))
     config.relation_emb_dim = 1024
@@ -127,7 +128,7 @@ def main():
     testset = FewRelDataset("test", test_data, pid2vec, property2idx)
     testloader = DataLoader(
         testset,
-        batch_size=256,
+        batch_size=args.eval_batch_size,
         collate_fn=create_mini_batch,
     )
 
@@ -228,7 +229,6 @@ def main():
             best_r = rt
             best_f1 = f1t
             best_epoch = epoch + 1
-            torch.save(model, f"best_f1_{best_f1:.4f}_fewrel_epoch_{epoch + 1}_m_{args.n_unseen}_alpha_{args.alpha}_gamma_{args.gamma}")
 
         best_sim_pct = (best_f1 / PAPER_FEWREL_M10["f1"]) * 100.0
         print(
