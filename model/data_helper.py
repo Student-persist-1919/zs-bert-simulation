@@ -141,12 +141,12 @@ def generate_attribute(
 
 
 def mark_wiki_entity(edge, sent_len):
-    e1 = np.array(edge["left"]) + 1
-    e2 = np.array(edge["right"]) + 1
-    e1 = e1[e1 < sent_len]
-    e2 = e2[e2 < sent_len]
-    marked_e1 = np.array([0] * sent_len)
-    marked_e2 = np.array([0] * sent_len)
+    e1 = np.array(edge["left"], dtype=np.int64) + 1
+    e2 = np.array(edge["right"], dtype=np.int64) + 1
+    e1 = e1[(e1 >= 0) & (e1 < sent_len)]
+    e2 = e2[(e2 >= 0) & (e2 < sent_len)]
+    marked_e1 = np.zeros(sent_len, dtype=np.int64)
+    marked_e2 = np.zeros(sent_len, dtype=np.int64)
     if len(e1) > 0:
         marked_e1[e1] += 1
     if len(e2) > 0:
@@ -158,12 +158,12 @@ def mark_wiki_entity(edge, sent_len):
 
 
 def mark_fewrel_entity(edge, sent_len):
-    e1 = np.array(edge["h"][2][0]) + 1
-    e2 = np.array(edge["t"][2][0]) + 1
-    e1 = e1[e1 < sent_len]
-    e2 = e2[e2 < sent_len]
-    marked_e1 = np.array([0] * sent_len)
-    marked_e2 = np.array([0] * sent_len)
+    e1 = np.array(edge["h"][2][0], dtype=np.int64) + 1
+    e2 = np.array(edge["t"][2][0], dtype=np.int64) + 1
+    e1 = e1[(e1 >= 0) & (e1 < sent_len)]
+    e2 = e2[(e2 >= 0) & (e2 < sent_len)]
+    marked_e1 = np.zeros(sent_len, dtype=np.int64)
+    marked_e2 = np.zeros(sent_len, dtype=np.int64)
     if len(e1) > 0:
         marked_e1[e1] += 1
     if len(e2) > 0:
@@ -213,15 +213,15 @@ class WikiDataset(Dataset):
         self.property2idx = property2idx
         self.len = len(data)
         self.tokenizer = BertTokenizer.from_pretrained(
-            "bert-base-uncased", do_lower_case=True
+            "bert-large-cased", do_lower_case=False
         )
 
     def __getitem__(self, idx):
         g = self.data[idx]
         sentence = " ".join(g["tokens"])
         tokens = self.tokenizer.tokenize(sentence)
-        tokens_ids = self.tokenizer.convert_tokens_to_ids(["[CLS]"] + tokens + ["[SEP]"])
-        tokens_tensor = torch.tensor(tokens_ids)
+        tokens_ids = self.tokenizer.convert_tokens_to_ids(["[CLS]"] + tokens[:510] + ["[SEP]"])
+        tokens_tensor = torch.tensor(tokens_ids, dtype=torch.long)
         segments_tensor = torch.tensor([0] * len(tokens_ids), dtype=torch.long)
         edge = g["edgeSet"][0]
         marked_e1, marked_e2 = mark_wiki_entity(edge, len(tokens_ids))
@@ -229,7 +229,7 @@ class WikiDataset(Dataset):
         relation_emb = self.pid2vec[property_kbid]
         if self.mode == "train":
             label = int(self.property2idx[property_kbid])
-            label_tensor = torch.tensor(label)
+            label_tensor = torch.tensor(label, dtype=torch.long)
         elif self.mode == "test":
             label_tensor = None
         return (
@@ -254,7 +254,7 @@ class FewRelDataset(Dataset):
         self.property2idx = property2idx
         self.len = len(data)
         self.tokenizer = BertTokenizer.from_pretrained(
-            "bert-base-uncased", do_lower_case=True
+            "bert-large-cased", do_lower_case=False
         )
         # Pre-cache tokenized items once to avoid re-tokenizing on CPU every epoch
         self._cache = [self._encode_item(i) for i in range(self.len)]
@@ -263,14 +263,14 @@ class FewRelDataset(Dataset):
         g = self.data[idx]
         sentence = " ".join(g["tokens"])
         tokens = self.tokenizer.tokenize(sentence)
-        tokens_ids = self.tokenizer.convert_tokens_to_ids(["[CLS]"] + tokens + ["[SEP]"])
-        tokens_tensor = torch.tensor(tokens_ids)
+        tokens_ids = self.tokenizer.convert_tokens_to_ids(["[CLS]"] + tokens[:510] + ["[SEP]"])
+        tokens_tensor = torch.tensor(tokens_ids, dtype=torch.long)
         segments_tensor = torch.tensor([0] * len(tokens_ids), dtype=torch.long)
         marked_e1, marked_e2 = mark_fewrel_entity(g, len(tokens_ids))
         relation_emb = self.pid2vec[g["relation"]]
         if self.mode == "train":
             label = int(self.property2idx[g["relation"]])
-            label_tensor = torch.tensor(label)
+            label_tensor = torch.tensor(label, dtype=torch.long)
         elif self.mode == "test":
             label_tensor = None
         return (

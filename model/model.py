@@ -57,7 +57,7 @@ class ZSBert(BertPreTrainedModel):
         pooled_output = outputs[1].float()    # Last layer hidden-state of the [CLS] token
 
         # Keep projection head and multi-task loss in float32 even when AMP autocast is enabled
-        with torch.cuda.amp.autocast(enabled=False):
+        with torch.amp.autocast("cuda", enabled=False):
             def extract_entity(seq_out, e_mask):
                 extended_e_mask = e_mask.unsqueeze(1).float()
                 extended_e_mask = torch.bmm(extended_e_mask, seq_out.float()).squeeze(1)

@@ -134,7 +134,7 @@ def main():
 
     model.train()
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
-    scaler = torch.cuda.amp.GradScaler(enabled=(args.fp16 and device.type == "cuda"))
+    scaler = torch.amp.GradScaler("cuda", enabled=(args.fp16 and device.type == "cuda"))
 
     best_p = 0.0
     best_r = 0.0
@@ -159,7 +159,7 @@ def main():
             optimizer.zero_grad()
 
             if args.fp16 and device.type == "cuda":
-                with torch.cuda.amp.autocast():
+                with torch.amp.autocast("cuda"):
                     outputs, out_relation_emb = model(
                         input_ids=tokens_tensors,
                         token_type_ids=segments_tensors,
