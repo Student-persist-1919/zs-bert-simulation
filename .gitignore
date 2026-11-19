@@ -1,22 +1,42 @@
-# Byte-compiled / optimized / DLL files
+# Python / local environments
 __pycache__/
 *.py[cod]
 *$py.class
+.venv/
+venv/
+.env
+.env.*
 
-# Preprocessed & raw large datasets (mounted via Kaggle Datasets on Kaggle)
+# Local datasets. Mount them through Kaggle Datasets, not through GitHub.
 data/
 fewrel_dataset.json
+fewrel_all.json
 wikizsl_dataset.json
+wiki_all.json
+
+# Local reports and personal documents
+docs/local/
 *NLP.pdf
 
-# Training logs, summaries, and model checkpoints
+# Training artifacts / downloaded model weights
+results_m_*/
+zs_bert_m_*_sources/
+outputs/
+checkpoints/
 *.log
 *.pt
 *.pth
 *.bin
 *.ckpt
+*.safetensors
+attributes.npz
 training_summary_*.json
+five_run_summary.json
+per_run_metrics.csv
+aggregate_metrics.csv
+.cache/
 
-# Jupyter Notebook checkpoints & temporary files
+# Notebook caches / temporary files
 .ipynb_checkpoints/
 temp_zs_bert/
+*.tmp

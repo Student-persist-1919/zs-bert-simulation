@@ -1,0 +1,9 @@
+# Three notebooks in notebooks/kaggle/. Kaggle supplies CUDA-enabled PyTorch.
+# Requires torch >= 2.4; do not replace the Kaggle CUDA wheel with a CPU wheel.
+transformers==4.44.2
+sentence-transformers==3.0.1
+numpy
+pandas
+scikit-learn
+lxml
+beautifulsoup4
