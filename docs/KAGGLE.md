@@ -22,7 +22,9 @@ Notebook dừng khi dữ liệu không đủ 56.000 mẫu, entity sai chỉ số
 
 Mỗi notebook chạy 5 seed tuần tự trong process riêng. Dùng GPU đầu tiên kể cả khi có T4 x2; batch train luôn là 4. Không tự chuyển sang huấn luyện đa GPU vì sẽ thay đổi các mẫu âm trong batch.
 
-Cell đầu tự cài `transformers==4.44.2` và `sentence-transformers==3.0.1`; PyTorch của Kaggle cần >=2.4. Nếu đã import một phiên bản transformers khác trong kernel, restart session trước khi chạy lại.
+Cell đầu tự cài `transformers==4.57.3`, `sentence-transformers==5.2.0` và `tokenizers==0.22.2`; PyTorch của Kaggle cần >=2.4. Bộ ghim này có wheel tokenizers dùng được với Python 3.13. Notebook yêu cầu cài tokenizers từ wheel để tránh build Rust từ source; đồng thời kiểm tra import NLP trong process mới trước khi tải model.
+
+Nếu đã chạy bản notebook cũ ghim transformers 4.44.2, hãy import lại file notebook đã sửa, restart session rồi chạy lại. Cảnh báo debugger về frozen modules không phải nguyên nhân lỗi cài dependency. Bộ dependency cũ kéo tokenizers 0.19.x, có thể khiến pip chuyển sang build source và thất bại trên Python 3.13.
 
 ## Kết quả
 

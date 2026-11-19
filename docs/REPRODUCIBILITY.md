@@ -12,7 +12,7 @@ FewRel cần đủ 80 quan hệ × 700 mẫu. Toàn bộ mẫu của các quan h
 - Bảng mô tả quan hệ: repository tác giả `dinobby/ZS-BERT`, commit `e2ffaea66244b2905055ee7cc47917985c3eab60`; SHA256 `d9c91ac01f18398e58a48ad7913e3f168553e3c06b306879b1b2389bde3eb21d`.
 - `google-bert/bert-large-cased`: revision `06fa25dc1b6e034e91607fd67c247051ccaeff65`.
 - `sentence-transformers/bert-large-nli-mean-tokens`: revision `a85b0d10e16867eb768e411c66f79475505b65dd`.
-- Thư viện chính: `transformers==4.44.2`, `sentence-transformers==3.0.1`; phiên bản torch/numpy/scikit-learn thực tế được ghi trong outputs.
+- Thư viện chính: `transformers==4.57.3`, `sentence-transformers==5.2.0`, `tokenizers==0.22.2`; phiên bản torch/numpy/scikit-learn thực tế được ghi trong outputs. Bộ ghim được cập nhật để hỗ trợ môi trường Kaggle Python 3.13, tránh lỗi build tokenizers của bộ dependency cũ. Wheel Linux cho Python 3.13 đã được kiểm tra tải thành công; chưa chạy end-to-end trên GPU Kaggle.
 
 Tài nguyên `resources/property_list.html` của implementation cũ được giữ nguyên để bảo toàn các script cũ. Ba notebook mới tải snapshot bảng mô tả của tác giả; hai bảng này có một số mô tả khác nhau.
 
