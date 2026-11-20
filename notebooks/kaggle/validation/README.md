@@ -37,3 +37,16 @@ Hash xác nhận tính nhất quán file, không phải chữ ký xác thực ng
 - Bản ready chỉ cho phép chênh lệch Wiki-ZSL để kiểm thử kỹ thuật trên snapshot;
   chênh lệch 93.383 so với 94.383 mẫu chưa được giải quyết cho báo cáo tái lập.
 - Chưa có smoke Wiki-ZSL thành công. Cần import bản ready và chạy lại trên Kaggle.
+
+## Wiki-ZSL: smoke test mới đã hoàn tất
+
+- [Notebook có output](../executed/wikizsl_m10_seed300_smoke.ipynb) do người dùng cung cấp,
+  SHA256 `69a835b5dd4dc3be5166ab9af58321182f6e656260d599c6bda850164d952661`.
+- Papermill exception=null, duration 134.740269 giây; code thực tế b4b8420,
+  Tesla T4, seed 300, m=10, smoke=true, 1 epoch.
+- Snapshot 93.383 mẫu/113 quan hệ được kiểm tra, khác paper 94.383 mẫu;
+  ALLOW_WIKI_COUNT_MISMATCH=True chỉ xác nhận bước kiểm thử kỹ thuật này.
+- 412 train / 40 test, 103 batch; evaluation và status complete xuất thành công.
+- P/R/F1 smoke: 1.2346% / 2.5% / 1.6529%. Không đưa vào bảng so sánh bài báo.
+- Config hash `f4c3d4958b695f0cbd8b62fa63a2c7c74bc6612923954ef6dffd2d7ee3f26ea2`.
+- Chưa nhận ZIP Wiki-ZSL để đối chiếu manifest; chưa kiểm tra GPU pause/resume.

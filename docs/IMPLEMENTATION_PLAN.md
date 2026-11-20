@@ -78,3 +78,8 @@ notebooks/kaggle/validation/. Notebook có output đã được nhận và đố
 evidence ZIP, lưu nguyên bản trong notebooks/kaggle/executed/.
 Chưa tính vào kết quả chính thức. Còn cần smoke Wiki-ZSL, GPU pause/resume
 và bộ 30 runs đủ 10 epoch.
+
+Wiki-ZSL m=10 seed 300 tại commit b4b8420 cũng đã hoàn thành smoke test
+trên T4 (1 epoch, 412 train/40 test), theo notebook có output người dùng cung cấp.
+Đã lưu notebook nguyên bản vào executed/. Chưa nhận ZIP Wiki-ZSL; chênh lệch
+số mẫu chưa được giải quyết, GPU pause/resume và full runs vẫn chưa kiểm chứng.
