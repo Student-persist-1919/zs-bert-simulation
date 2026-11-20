@@ -25,3 +25,15 @@
 
 ZIP chứa dữ liệu thuộc tính, cấu hình và bằng chứng do người dùng tải từ Kaggle.
 Hash xác nhận tính nhất quán file, không phải chữ ký xác thực nguồn.
+
+## Wiki-ZSL: lần thử đầu chưa tới train
+
+- Giữ nguyên [notebook lỗi](wikizsl_m10_failed_short_revision.ipynb) do người dùng cung cấp.
+- Git báo `couldn't find remote ref b4b8420` vì bootstrap fetch một SHA rút gọn
+  như remote ref. Đã sửa 3 notebook: fetch refs rồi resolve revision ở local.
+- Cell người dùng sửa còn thiếu M/DATA_FILE, đồng thời ALLOW_WIKI_COUNT_MISMATCH
+  bị gán lại False. Bản [Wiki smoke sẵn cấu hình](wikizsl_m10_smoke_ready.ipynb)
+  có đủ biến, không lặp, khóa full commit b4b84208cf43b4274f2d2aaaf14beead0daf4707.
+- Bản ready chỉ cho phép chênh lệch Wiki-ZSL để kiểm thử kỹ thuật trên snapshot;
+  chênh lệch 93.383 so với 94.383 mẫu chưa được giải quyết cho báo cáo tái lập.
+- Chưa có smoke Wiki-ZSL thành công. Cần import bản ready và chạy lại trên Kaggle.

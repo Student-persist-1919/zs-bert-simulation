@@ -12,6 +12,9 @@
 6. Kiểm tra cả hai dataset; đặt budget ngắn để kiểm tra pause rồi resume cùng seed.
 7. Ghi SHA commit CODE COMMIT và raw_data_sha256; gán CODE_REV và
    EXPECTED_DATA_SHA256 tương ứng cho bộ runs chính thức. Đặt SMOKE_TEST=False.
+   Ưu tiên SHA đầy đủ 40 ký tự. Bootstrap mới fetch refs rồi resolve SHA ở local;
+   bootstrap cũ không hỗ trợ fetch SHA rút gọn. Khi sửa cell, giữ đủ M và DATA_FILE,
+   mỗi biến chỉ gán một lần để không vô tình ghi đè lựa chọn trước đó.
 8. Mỗi phiên chỉ chạy một run. Sau complete đủ 10 epoch mới tính là kết quả chính thức.
 
 ## Dữ liệu
