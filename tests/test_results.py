@@ -28,6 +28,18 @@ def evidence(seed=300, smoke=False, status='complete'):
 
 
 class EvidenceTests(unittest.TestCase):
+    def test_evidence_and_summary_can_live_in_separate_directories(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp)
+            archive=root/'run.zip'
+            with zipfile.ZipFile(archive,'w') as z:
+                for k,v in evidence().items():z.writestr(f'run/{k}',v)
+            destination=import_zip(archive,'original','https://www.kaggle.com/code/user/run',root/'experiments')
+            self.assertTrue(destination.is_relative_to(root/'experiments/runs'))
+            rebuild(root/'notebooks/kaggle',evidence_base=root/'experiments')
+            self.assertTrue((root/'notebooks/kaggle/results.csv').exists())
+            self.assertIn('experiments/runs',(root/'notebooks/kaggle/results.csv').read_text(encoding='utf-8'))
+
     def test_checksum_and_smoke_rejected(self):
         files=evidence(); files['attributes.npz']=b'tampered'
         with self.assertRaises(ValueError):validate(files)

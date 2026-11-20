@@ -1,21 +1,23 @@
 # Chạy từng run trên Kaggle Free
 
-## Chuẩn bị và thứ tự
+## Chạy ngay từng run đủ 10 epoch
 
-1. Push bộ code refactor lên repo trước khi import notebook mới. Ba notebook mới
-   cần scripts/kaggle_run.py có trong commit được tải. Chưa push thì không chạy được.
-2. Import một trong notebooks/kaggle/zs-bert-m-{5,10,15}.ipynb.
-3. GPU On, Internet On. Không cần dataset Input khi bắt đầu run mới.
-4. Chọn DATASET và RUN_ID (1–5, seed 300–304). SMOKE_TEST mặc định True:
-   một epoch, tối đa 4 mẫu mỗi quan hệ, chỉ kiểm tra kỹ thuật, không phải kết quả.
-5. Save Version → Save & Run All. Kiểm tra log, output, đánh giá và trạng thái.
-6. Kiểm tra cả hai dataset; đặt budget ngắn để kiểm tra pause rồi resume cùng seed.
-7. Ghi SHA commit CODE COMMIT và raw_data_sha256; gán CODE_REV và
-   EXPECTED_DATA_SHA256 tương ứng cho bộ runs chính thức. Đặt SMOKE_TEST=False.
-   Ưu tiên SHA đầy đủ 40 ký tự. Bootstrap mới fetch refs rồi resolve SHA ở local;
-   bootstrap cũ không hỗ trợ fetch SHA rút gọn. Khi sửa cell, giữ đủ M và DATA_FILE,
-   mỗi biến chỉ gán một lần để không vô tình ghi đè lựa chọn trước đó.
-8. Mỗi phiên chỉ chạy một run. Sau complete đủ 10 epoch mới tính là kết quả chính thức.
+FewRel và Wiki-ZSL đã qua smoke test. Người dùng quyết định bỏ qua kiểm thử
+pause/resume riêng; không có bước thử bổ sung bắt buộc trước khi chạy chính thức.
+
+1. Import notebooks/kaggle/zs-bert-m-{5,10,15}.ipynb vào Kaggle mới.
+2. GPU On, Internet On. Không cần dataset Input khi bắt đầu run mới.
+3. Chọn DATASET="fewrel" hoặc "wikizsl" và RUN_ID=1..5.
+4. Giữ SMOKE_TEST=False, CODE_REV full SHA b4b84208cf43b4274f2d2aaaf14beead0daf4707.
+   Đây là runner đã chạy smoke GPU; notebook bootstrap mới checkout được SHA này.
+   EXPECTED_DATA_SHA256 tự chọn theo dataset, không cần sửa. M đã cố định theo tên file.
+5. Save Version → Save & Run All. Kiểm tra log in epochs=10, smoke=false.
+6. Khi complete: tải ZIP evidence và notebook có output, gửi để nhập vào hồ sơ GitHub.
+7. Tăng RUN_ID, tạo version/session mới; sau 5 run đổi dataset. Lặp cho cả 3 m.
+   Cần 30 runs hoàn chỉnh; một run paused chưa tính hoàn thành.
+
+Tệp kết quả cũ trích log không được tự gộp; các run chính thức mới có hash riêng.
+Nếu sửa cell cấu hình, sửa giá trị tại dòng hiện có; không dán thêm biến trùng tên.
 
 ## Dữ liệu
 
@@ -27,7 +29,8 @@ kiểm tra link tác giả; không tự thay nguồn nếu tải lỗi.
 Nguồn: https://github.com/dinobby/ZS-BERT#dataset
 FewRel phải 80 quan hệ × 700 mẫu. Wiki-ZSL phải 113 quan hệ; Table 1 ghi 94.383 mẫu.
 Snapshot Wiki-ZSL có 93.383 mẫu. Nếu bản tải tác giả cũng khác báo, phải xem nguồn và
-ghi giải trình; chỉ sau đó đặt ALLOW_WIKI_COUNT_MISMATCH=True. Không tự sửa số mẫu.
+ghi giải trình. Bộ notebook chính đặt ALLOW_WIKI_COUNT_MISMATCH theo DATASET để
+cho phép chạy snapshot hiện có, vẫn ghi discrepancy vào provenance. Không tự sửa số mẫu.
 DATA_FILE là tùy chọn khi kiểm tra local hoặc tải tác giả bị gián đoạn.
 
 Lần smoke test Kaggle đầu đã nhận GPU T4 nhưng dừng ở gdown: không lấy được link
@@ -51,7 +54,7 @@ Checkpoint bộ notebook cũ không tự tương thích bộ mới. Một run c�
 ## Bằng chứng và kết quả GitHub
 
 Download *_evidence.zip từ Output (không có checkpoint) và .ipynb đã chạy từ đúng
-version. Lưu notebook vào notebooks/kaggle/executed với tên gồm dataset/m/seed/attempt.
+version. Lưu notebook vào experiments/executed với tên gồm dataset/m/seed/attempt.
 Ví dụ lệnh local:
 
 ```powershell
@@ -78,5 +81,5 @@ Metric chính theo tác giả; thêm sklearn macro để kiểm tra. Best dùng 
 epoch; final là epoch 10. Không tuyên bố trùng kết quả báo hay runtime 2021.
 
 30 runs tương ứng 2 datasets × 3 m × 5 seeds; có thể cần hơn 30 Save Versions.
-Chưa chạy full train hoặc smoke GPU cho bộ refactor; các bước này phải thực hiện
-trên Kaggle và giữ bằng chứng trước khi công bố kết quả.
+Đã có smoke GPU cả hai dataset; chưa có full run 10 epoch của bộ mới.
+GPU pause/resume chưa kiểm chứng; người dùng chọn bỏ qua bước kiểm thử riêng này.

@@ -21,22 +21,17 @@
   SHA256: `d718eb9121f8b54d061d4f318874f5b74942d43e73f322e197b2154f07256c34`.
   Config trong output khớp hoàn toàn config trong ZIP, Papermill exception=null,
   không có error output; code commit thực tế là b4b8420 dù biến CODE_REV còn main.
-- Chưa kiểm tra Wiki-ZSL hoặc GPU pause/resume.
+- Ở thời điểm lưu FewRel, chưa kiểm tra Wiki-ZSL hoặc GPU pause/resume; xem cập nhật bên dưới.
 
 ZIP chứa dữ liệu thuộc tính, cấu hình và bằng chứng do người dùng tải từ Kaggle.
 Hash xác nhận tính nhất quán file, không phải chữ ký xác thực nguồn.
 
 ## Wiki-ZSL: lần thử đầu chưa tới train
 
-- Giữ nguyên [notebook lỗi](wikizsl_m10_failed_short_revision.ipynb) do người dùng cung cấp.
+- Giữ nguyên [notebook lỗi](../historical/wikizsl_m10_failed_short_revision.ipynb) do người dùng cung cấp.
 - Git báo `couldn't find remote ref b4b8420` vì bootstrap fetch một SHA rút gọn
   như remote ref. Đã sửa 3 notebook: fetch refs rồi resolve revision ở local.
-- Cell người dùng sửa còn thiếu M/DATA_FILE, đồng thời ALLOW_WIKI_COUNT_MISMATCH
-  bị gán lại False. Bản [Wiki smoke sẵn cấu hình](wikizsl_m10_smoke_ready.ipynb)
-  có đủ biến, không lặp, khóa full commit b4b84208cf43b4274f2d2aaaf14beead0daf4707.
-- Bản ready chỉ cho phép chênh lệch Wiki-ZSL để kiểm thử kỹ thuật trên snapshot;
-  chênh lệch 93.383 so với 94.383 mẫu chưa được giải quyết cho báo cáo tái lập.
-- Chưa có smoke Wiki-ZSL thành công. Cần import bản ready và chạy lại trên Kaggle.
+- Cell cấu hình cũ thiếu M/DATA_FILE và có biến bị ghi đè; đã sửa và lần thử tiếp theo đạt.
 
 ## Wiki-ZSL: smoke test mới đã hoàn tất
 
@@ -55,13 +50,8 @@ Hash xác nhận tính nhất quán file, không phải chữ ký xác thực ng
   result/status/config khớp hash, history khớp và train/test rời nhau.
 - Chưa kiểm tra GPU pause/resume.
 
-## Bước kế tiếp: kiểm thử deadline thật
+## Quyết định tiếp tục
 
-[Notebook pause thử](fewrel_m10_pause_ready.ipynb) giữ code b4b8420 và FewRel smoke,
-đặt MAX_SESSION_HOURS=0.028 (~100,8 giây từ cell đầu). Theo lần thử trước,
-train bắt đầu khoảng 90 giây và hoàn tất khoảng 120 giây, nên ngân sách này dự
-kiến cắt ngang run. Thời gian khởi động biến động: phải xem status/next_step thực
-tế, không coi giá trị thời gian này là bảo đảm đã train đủ một số batch cụ thể.
-Nếu paused từ batch 0, cần thêm kiểm thử pause sau các bước Adam trước khi kết
-luận khả năng tiếp tục train giữa epoch đã được kiểm chứng.
-Giữ full output trên Kaggle, bao gồm checkpoint, để kiểm thử phiên resume riêng.
+Người dùng chọn bỏ qua kiểm thử pause/resume riêng để chạy từng run chính thức.
+Đã xóa notebook cấu hình thử tạm; giữ ZIP, notebook đã thực thi và lịch sử lỗi.
+Cơ chế deadline/checkpoint vẫn tồn tại, nhưng GPU resume chưa được kiểm chứng.

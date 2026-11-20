@@ -6,8 +6,10 @@ import json
 from pathlib import Path
 import statistics
 import zipfile
+import os
 
 BASE = Path(__file__).resolve().parents[1] / 'notebooks/kaggle'
+EXPERIMENTS = Path(__file__).resolve().parents[1] / 'experiments'
 PAPER = {
     ('fewrel',5): (76.96,78.86,77.90), ('fewrel',10): (56.92,57.59,57.25),
     ('fewrel',15): (35.54,38.19,36.82), ('wikizsl',5): (71.54,72.39,71.96),
@@ -61,7 +63,7 @@ def validate(files):
     return cfg, status
 
 
-def import_zip(path, label, kaggle_url, base=BASE):
+def import_zip(path, label, kaggle_url, base=EXPERIMENTS):
     if not label or any(c not in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-' for c in label):
         raise ValueError('Attempt label must contain only letters, digits, underscore or dash.')
     if not kaggle_url.startswith('https://www.kaggle.com/code/'):
@@ -92,14 +94,15 @@ def import_zip(path, label, kaggle_url, base=BASE):
     return destination
 
 
-def rebuild(base=BASE):
+def rebuild(base=BASE, evidence_base=None):
+    evidence_base = Path(evidence_base) if evidence_base is not None else (EXPERIMENTS if base == BASE else base)
     rows, groups = [], {}
-    for config in sorted((base/'runs').glob('*/*/experiment_config.json')):
+    for config in sorted((evidence_base/'runs').glob('*/*/experiment_config.json')):
         directory = config.parent
         files = {p.name: p.read_bytes() for p in directory.iterdir() if p.is_file()}
         cfg, status = validate(files)
         item = dict(dataset=cfg['dataset'], m=cfg['m'], seed=cfg['seed'], attempt=directory.name,
-                    status=status['status'], config_hash=cfg['config_hash'], evidence=str(directory.relative_to(base)))
+                    status=status['status'], config_hash=cfg['config_hash'], evidence=Path(os.path.relpath(directory, base)).as_posix())
         result = None
         if status['status'] == 'complete':
             result = json.loads(files[f"run_seed_{cfg['seed']}.json"])

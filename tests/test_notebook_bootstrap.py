@@ -11,6 +11,21 @@ URL = 'https://github.com/Student-persist-1919/zs-bert-simulation.git'
 
 
 class BootstrapTests(unittest.TestCase):
+    def test_main_notebooks_default_to_locked_full_runs_for_both_datasets(self):
+        hashes = {'fewrel':'85c2595bf743c203c22e78868f5a9f309ad726aa27c36e804554d99461736e19',
+                  'wikizsl':'9a16f9752d69152e32d5ac0b59d48095f7e530d8ccc244f1e48cd48110d84e47'}
+        for m in [5,10,15]:
+            nb=json.loads((ROOT/f'notebooks/kaggle/zs-bert-m-{m}.ipynb').read_text(encoding='utf-8'))
+            source=next(''.join(c['source']) for c in nb['cells'] if 'DATASET =' in ''.join(c['source']))
+            for dataset in ['fewrel','wikizsl']:
+                namespace={}
+                exec(source.replace('DATASET = "fewrel"',f'DATASET = "{dataset}"'),namespace)
+                self.assertFalse(namespace['SMOKE_TEST'])
+                self.assertEqual(namespace['CODE_REV'], FULL)
+                self.assertEqual(namespace['M'],m)
+                self.assertEqual(namespace['EXPECTED_DATA_SHA256'],hashes[dataset])
+                self.assertEqual(namespace['ALLOW_WIKI_COUNT_MISMATCH'],dataset=='wikizsl')
+
     def test_short_commit_is_resolved_locally_before_checkout(self):
         for m in [5,10,15]:
             nb=json.loads((ROOT/f'notebooks/kaggle/zs-bert-m-{m}.ipynb').read_text(encoding='utf-8'))

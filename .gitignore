@@ -7,7 +7,7 @@ venv/
 .env
 .env.*
 
-# Local datasets. Mount them through Kaggle Datasets, not through GitHub.
+# Uncompressed local datasets. Versioned compressed snapshots are in resources/datasets/.
 data/
 fewrel_dataset.json
 fewrel_all.json
@@ -42,5 +42,5 @@ temp_zs_bert/
 *.tmp
 
 # Reviewed experiment evidence belongs in Git; model checkpoints remain ignored.
-!notebooks/kaggle/runs/**/train_seed_*.log
-!notebooks/kaggle/runs/**/attributes.npz
+!experiments/runs/**/train_seed_*.log
+!experiments/runs/**/attributes.npz

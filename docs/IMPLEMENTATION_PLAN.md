@@ -1,5 +1,18 @@
 # Kế hoạch tái lập ZS-BERT trên Kaggle Free
 
+## Cập nhật theo yêu cầu người dùng: bắt đầu runs chính thức
+
+- Bỏ qua bước kiểm thử GPU pause/resume riêng; không yêu cầu người dùng chạy thêm notebook thử.
+- Ba notebook chính mặc định SMOKE_TEST=False, đủ 10 epoch, khóa code b4b8420
+  đã qua smoke GPU và hash dữ liệu tương ứng; chỉ chọn DATASET và RUN_ID.
+- Wiki-ZSL dùng snapshot 93.383 mẫu và lưu discrepancy trong provenance.
+- Giữ deadline/checkpoint; nếu paused thì vẫn phải resume mới đủ 10 epoch.
+- notebooks/kaggle/ chỉ giữ 3 notebook, results.csv và RESULTS.md.
+  Chuyển bằng chứng/outputs sang experiments/, notebook cũ sang notebooks/archive/.
+- Xóa hai notebook thử tạm (cấu hình Wiki smoke và pause); giữ bằng chứng đã chạy.
+- Hướng dẫn hiện hành: KAGGLE_SINGLE_RUN.md. Phần kế hoạch/lịch sử bên dưới
+  lưu các bước trước đây; yêu cầu chạy thử resume riêng đã được người dùng bỏ qua.
+
 Phạm vi: tái lập ZS-BERT trong Table 2, hai dataset FewRel/Wiki-ZSL,
 m=5/10/15, mỗi cấu hình 5 seed 300–304, mỗi run 10 epoch.
 30 runs hoàn chỉnh có thể cần hơn 30 phiên Save & Run All (giới hạn 12 giờ).
@@ -46,8 +59,8 @@ Không gộp kết quả khác cấu hình. Seed 300–304 là lựa chọn tái
 
 ## Đã triển khai trong đợt refactor
 
-- Bước 1: chuyển 3 notebook năm seed sang notebooks/legacy/five-runs;
-  JSON trích log sang notebooks/kaggle/historical, giữ nguyên nội dung.
+- Bước 1: chuyển 3 notebook năm seed sang notebooks/archive/five-runs;
+  JSON trích log sang experiments/historical, giữ nguyên nội dung.
 - Bước 2: đếm/chuẩn hóa local thành công cả 2 dataset; ghi checksum thực tế lúc
   tải, kiểm tra entity/count, dừng khi Wiki-ZSL lệch số mẫu chưa được xác nhận.
 - Bước 3–6: đã tạo notebook, runner chung, deadline/checkpoint, ZIP bằng chứng,
@@ -74,8 +87,8 @@ Không gộp kết quả khác cấu hình. Seed 300–304 là lựa chọn tái
 
 FewRel m=10 seed 300 tại commit b4b8420 đã hoàn thành 1 epoch/280 train/40 test
 trên Tesla T4, xuất evidence ZIP hợp lệ. Bằng chứng và kiểm tra nằm trong
-notebooks/kaggle/validation/. Notebook có output đã được nhận và đối chiếu khớp
-evidence ZIP, lưu nguyên bản trong notebooks/kaggle/executed/.
+experiments/validation/. Notebook có output đã được nhận và đối chiếu khớp
+evidence ZIP, lưu nguyên bản trong experiments/executed/.
 Chưa tính vào kết quả chính thức. Còn cần smoke Wiki-ZSL, GPU pause/resume
 và bộ 30 runs đủ 10 epoch.
 

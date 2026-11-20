@@ -1,56 +1,65 @@
 # ZS-BERT — tái lập trên Kaggle Free
 
-Tái lập ZS-BERT trong Table 2 (NAACL 2021): FewRel và Wiki-ZSL, m=5/10/15,
-5 seed 300–304, 10 epoch/run. 30 runs có thể cần hơn 30 phiên 12 giờ.
+2 datasets (FewRel/Wiki-ZSL) × 3 cấu hình m (5/10/15) × 5 seed (300–304):
+30 runs, mỗi run đủ 10 epoch. Có thể cần hơn 30 phiên Save & Run All do giới hạn 12 giờ.
 
-## Bắt đầu
+## Chạy chính thức
 
-1. Đọc [kế hoạch](docs/IMPLEMENTATION_PLAN.md) và [hướng dẫn từng run](docs/KAGGLE_SINGLE_RUN.md).
-2. Push bộ code này trước khi dùng notebook mới (notebook tải scripts từ repo GitHub).
-3. Import một notebook, GPU + Internet, chọn DATASET và RUN_ID.
-4. Chạy smoke test cho cả hai dataset và kiểm tra pause/resume trước runs chính thức.
-5. Khóa CODE_REV và checksum dữ liệu đã kiểm tra; SMOKE_TEST=False; Save & Run All.
-6. Download evidence ZIP và notebook đã chạy; nhập kết quả bằng scripts/collect_results.py.
+1. Tải một trong ba notebook bên dưới và import vào Kaggle.
+2. GPU + Internet On; chỉ đổi DATASET và RUN_ID trong cell cấu hình.
+3. Giữ SMOKE_TEST=False, code revision và checksum đã khóa; Save Version → Save & Run All.
+4. Sau mỗi run, tải ZIP bằng chứng và notebook có output. Xem [hướng dẫn](docs/KAGGLE_SINGLE_RUN.md).
+5. Nếu paused, giữ full output trên Kaggle để tiếp tục cùng run. Chỉ complete đủ 10 epoch mới được tổng hợp.
 
-- [m=5](notebooks/kaggle/zs-bert-m-5.ipynb)
-- [m=10](notebooks/kaggle/zs-bert-m-10.ipynb)
-- [m=15](notebooks/kaggle/zs-bert-m-15.ipynb)
-- [Kết quả và tiến độ](notebooks/kaggle/RESULTS.md)
-- [CSV từng run](notebooks/kaggle/results.csv)
+- [Notebook m=5](notebooks/kaggle/zs-bert-m-5.ipynb)
+- [Notebook m=10](notebooks/kaggle/zs-bert-m-10.ipynb)
+- [Notebook m=15](notebooks/kaggle/zs-bert-m-15.ipynb)
+- [Kết quả](notebooks/kaggle/RESULTS.md) và [CSV từng run](notebooks/kaggle/results.csv)
+
+RUN_ID=1/2/3/4/5 tương ứng seed=300/301/302/303/304.
+Mỗi notebook dùng được cho cả DATASET="fewrel" và DATASET="wikizsl".
 
 ## Cấu trúc
 
-- model/: model/loss, dataset và metric implementation hiện có.
-- scripts/kaggle_run.py: tải dữ liệu/model, kiểm tra config, điều phối một seed, đóng gói bằng chứng.
-- scripts/train_run.py: train/evaluate, checkpoint và deadline.
-- scripts/normalize_data.py và build_attributes.py: tiền xử lý và thuộc tính cố định.
-- scripts/collect_results.py: kiểm tra/nhập bằng chứng và tổng hợp đủ 5 seed.
-- notebooks/kaggle/: 3 notebook, results.csv, RESULTS.md; runs/ chứa evidence từng attempt.
-- notebooks/kaggle/executed/: notebook có output tải từ version Kaggle.
-- notebooks/kaggle/historical/: metric trích log của bộ chạy cũ, chưa gộp vào bộ mới.
-- notebooks/legacy/: notebook cũ giữ nguyên làm bằng chứng lịch sử.
-- docs/: hướng dẫn, kế hoạch, bài báo và giới hạn tái lập.
-- resources/: tài nguyên implementation cũ; runner mới dùng snapshot mô tả tác giả có checksum.
-- data/raw/: dữ liệu local không commit; bản nén bất biến đặt tại resources/datasets/
-  với SHA256 và provenance. Notebook lấy snapshot cùng commit code, không cần Add Input.
+```text
+BTL/
+├── notebooks/
+│   ├── kaggle/          # Chỉ 3 notebook chính, results.csv, RESULTS.md
+│   └── archive/         # Notebook implementation cũ, giữ truy nguyên
+├── experiments/
+│   ├── runs/            # Evidence chính thức theo run/attempt (tạo khi nhập ZIP)
+│   ├── executed/        # Notebook đã chạy, có output
+│   ├── validation/      # Bằng chứng smoke test đã đạt
+│   └── historical/      # Log/kết quả lịch sử và các lần lỗi
+├── model/               # Model, loss, dataset, metric
+├── scripts/             # Điều phối Kaggle, train, dữ liệu và tổng hợp
+├── resources/datasets/  # Snapshot JSON nén và SHA256
+├── docs/                # Kế hoạch, hướng dẫn, giới hạn và bài báo
+├── tests/               # Kiểm tra local
+└── data/raw/            # Dữ liệu local, không commit
+```
 
 ## Trạng thái và giới hạn
 
-Bộ refactor đã thử trên Kaggle T4: cài thư viện/import GPU đạt, nhưng lần đầu dừng
-ở tải FewRel bằng gdown. Đã bổ sung snapshot có hash; cần chạy lại smoke test GPU.
-Snapshot là dữ liệu BTL, chưa xác minh giống file Drive tác giả. Hai run FewRel seed 300 lịch sử đã
-hoàn thành theo log, không được tự trộn vào bộ cấu hình mới. Dữ liệu local FewRel:
-56.000/80 quan hệ; Wiki-ZSL: 93.383/113, khác Table 1 (94.383). Runner dừng trước
-train nếu lệch count, trừ khi người dùng cho phép và ghi rõ giải trình.
+Smoke test train/evaluate/export đã đạt trên T4 cho cả FewRel và Wiki-ZSL;
+[bằng chứng](experiments/validation/README.md) và [notebook có output](experiments/executed/).
+Theo yêu cầu người dùng, bỏ qua kiểm thử GPU pause/resume riêng để chạy chính thức.
+Cơ chế checkpoint/deadline vẫn được giữ; GPU resume chưa được kiểm chứng.
+Chưa có run 10 epoch của bộ cấu hình mới trong results.csv.
 
-Dùng FP32, batch 4, Adam; theo implementation BERT-large 1024. Giữ quy tắc entity
-mask token gốc+1 (chưa căn chỉnh WordPiece). Main metric theo tác giả, có sklearn
-macro bổ sung. Best chọn epoch bằng test F1; final là epoch 10. Không hứa trùng điểm báo.
+Snapshot FewRel: 56.000 mẫu/80 quan hệ. Snapshot Wiki-ZSL: 93.383/113, khác
+Table 1 (94.383). Notebook cho phép chạy snapshot Wiki-ZSL và ghi rõ discrepancy
+trong provenance; không khẳng định tái lập đúng dataset của báo. Các file BTL chưa
+được xác minh giống hệt file Google Drive tác giả.
 
-requirements-original.txt giữ bộ thư viện tác giả để tham khảo;
-requirements-kaggle.txt dùng runtime tương thích hiện đại. Ghi môi trường thực tế mỗi run.
-Xem [chi tiết giới hạn](docs/REPRODUCIBILITY.md).
+Theo implementation hiện có: BERT-large 1024, FP32, batch 4, Adam, lr 5e-6,
+gamma 7.5, alpha 0.4. Giữ entity mask token gốc+1 (chưa căn chỉnh WordPiece).
+Main metric theo tác giả; thêm sklearn macro. Best chọn bằng test F1, final là
+ epoch 10. Xem [giới hạn tái lập](docs/REPRODUCIBILITY.md).
+
+requirements-original.txt giữ dependencies tác giả để tham khảo;
+requirements-kaggle.txt dùng môi trường hiện đại, lưu phiên bản thực tế mỗi run.
+[Kế hoạch và tiến độ](docs/IMPLEMENTATION_PLAN.md).
 
 Nguồn: [bài báo](https://aclanthology.org/2021.naacl-main.272/),
-[code tác giả](https://github.com/dinobby/ZS-BERT),
-[repo dự án](https://github.com/Student-persist-1919/zs-bert-simulation).
+[code tác giả](https://github.com/dinobby/ZS-BERT).

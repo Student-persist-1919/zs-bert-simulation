@@ -58,4 +58,4 @@ Notebook dùng exhaustive argmax thay BallTree vì negative inner product không
 
 Đã kiểm tra cấu trúc notebook, compile các cell Python và script nhúng, xử lý entity, số lượng mẫu/split và cell tổng hợp với dữ liệu kiểm thử tổng hợp. Chưa huấn luyện trên GPU Kaggle; chưa có kết quả thực nghiệm mới để khẳng định bằng điểm của báo.
 
-Notebook cũ và README cũ được giữ dưới `notebooks/legacy/` và `docs/legacy/`. Các tuyên bố tỷ lệ tái lập trong README cũ là nội dung lịch sử, không đại diện cho kết quả đã được xác minh của bộ 5 runs mới.
+Notebook cũ và README cũ được giữ dưới `notebooks/archive/` và `docs/legacy/`. Các tuyên bố tỷ lệ tái lập trong README cũ là nội dung lịch sử, không đại diện cho kết quả đã được xác minh của bộ 5 runs mới.
