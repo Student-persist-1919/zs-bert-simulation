@@ -58,3 +58,14 @@ Không gộp kết quả khác cấu hình. Seed 300–304 là lựa chọn tái
 - Bước 8 còn lại: push bộ code, kiểm tra tải dữ liệu thực từ nguồn tác giả,
   smoke GPU hai dataset và pause/resume trên Kaggle, chốt revision/hash,
   chạy 30 runs và nhập kết quả thực. results.csv hiện chỉ có header.
+
+## Sửa sau smoke test Kaggle đầu tiên
+
+- Log người dùng: Python 3.13/PyTorch 2.11/Tesla T4 import đạt, lỗi gdown public
+  file retrieval sau khoảng 60 giây, chưa train. Chưa xác định quota hay quyền Drive.
+- Test tái hiện đường chạy main khi Drive unavailable đã thất bại trước bản sửa.
+- Thêm resources/datasets/*.json.gz giữ nguyên byte dữ liệu BTL, SHA256 gzip/raw,
+  thống kê và nguồn; mặc định snapshot, author-drive là tùy chọn rõ ràng.
+- Không tuyên bố snapshot đã xác minh giống dữ liệu tác giả. Chặn count Wiki-ZSL
+  chưa được cho phép như trước. Notebook không cần dataset Input cho run mới.
+- Cần người dùng chạy lại smoke test Kaggle; test local chỉ xác nhận chuẩn bị dữ liệu.

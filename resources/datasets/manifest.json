@@ -1,0 +1,24 @@
+{
+  "fewrel": {
+    "filename": "fewrel_dataset.json.gz",
+    "raw_sha256": "85c2595bf743c203c22e78868f5a9f309ad726aa27c36e804554d99461736e19",
+    "archive_sha256": "870cc35e03d9441f8b6046f3400874a6510246866e846bfba8a08b44a544c819",
+    "raw_bytes": 20970508,
+    "samples": 56000,
+    "relations": 80,
+    "source": "project snapshot from BTL data/raw",
+    "author_reference": "https://drive.google.com/file/d/1QY-5R2zqLPnT5DDF5phTbSvEeBkQRh7A/view",
+    "author_identity_verified": false
+  },
+  "wikizsl": {
+    "filename": "wikizsl_dataset.json.gz",
+    "raw_sha256": "9a16f9752d69152e32d5ac0b59d48095f7e530d8ccc244f1e48cd48110d84e47",
+    "archive_sha256": "7f52cff6e520c700e68171a4c89000fdd923593c4b2c8f0063c19356f7399033",
+    "raw_bytes": 32269332,
+    "samples": 93383,
+    "relations": 113,
+    "source": "project snapshot from BTL data/raw",
+    "author_reference": "https://drive.google.com/file/d/1ELFGUIYDClmh9GrEHjFYoE_VI1t2a5nK/view",
+    "author_identity_verified": false
+  }
+}

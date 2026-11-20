@@ -31,11 +31,14 @@ Tái lập ZS-BERT trong Table 2 (NAACL 2021): FewRel và Wiki-ZSL, m=5/10/15,
 - notebooks/legacy/: notebook cũ giữ nguyên làm bằng chứng lịch sử.
 - docs/: hướng dẫn, kế hoạch, bài báo và giới hạn tái lập.
 - resources/: tài nguyên implementation cũ; runner mới dùng snapshot mô tả tác giả có checksum.
-- data/raw/: dữ liệu local không commit; notebook mới tự tải link tác giả.
+- data/raw/: dữ liệu local không commit; bản nén bất biến đặt tại resources/datasets/
+  với SHA256 và provenance. Notebook lấy snapshot cùng commit code, không cần Add Input.
 
 ## Trạng thái và giới hạn
 
-Bộ refactor chưa được chạy trên GPU Kaggle. Hai run FewRel seed 300 lịch sử đã
+Bộ refactor đã thử trên Kaggle T4: cài thư viện/import GPU đạt, nhưng lần đầu dừng
+ở tải FewRel bằng gdown. Đã bổ sung snapshot có hash; cần chạy lại smoke test GPU.
+Snapshot là dữ liệu BTL, chưa xác minh giống file Drive tác giả. Hai run FewRel seed 300 lịch sử đã
 hoàn thành theo log, không được tự trộn vào bộ cấu hình mới. Dữ liệu local FewRel:
 56.000/80 quan hệ; Wiki-ZSL: 93.383/113, khác Table 1 (94.383). Runner dừng trước
 train nếu lệch count, trừ khi người dùng cho phép và ghi rõ giải trình.

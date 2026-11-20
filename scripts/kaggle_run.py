@@ -12,6 +12,7 @@ import time
 import zipfile
 
 from normalize_data import preprocess
+from dataset_source import prepare_snapshot
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCES = {
@@ -44,12 +45,12 @@ def main():
     p.add_argument('--deadline', type=float, required=True)
     p.add_argument('--resume', default='')
     p.add_argument('--data-file', default='')
+    p.add_argument('--data-source', choices=['snapshot', 'author-drive'], default='snapshot')
     p.add_argument('--expected-data-sha256', default='')
     p.add_argument('--allow-wiki-count-mismatch', action='store_true')
     p.add_argument('--smoke', action='store_true')
     args = p.parse_args()
     import torch
-    import gdown
     from huggingface_hub import snapshot_download
     if not torch.cuda.is_available():
         raise RuntimeError('Enable GPU before Save & Run All.')
@@ -62,9 +63,29 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     source_id, expected_relations, paper_samples = SOURCES[args.dataset]
     raw = Path(args.data_file) if args.data_file else task / f'{args.dataset}_raw.json'
-    if not raw.exists():
-        if not gdown.download(id=source_id, output=str(raw), quiet=False):
-            raise RuntimeError('Author dataset download failed; no substitute data was used.')
+    if args.data_file:
+        source_metadata = dict(source='local override', author_identity_verified=False)
+        if not raw.is_file():
+            raise FileNotFoundError(f'Explicit DATA_FILE does not exist: {raw}')
+    elif args.data_source == 'snapshot':
+        source_metadata = prepare_snapshot(ROOT, args.dataset, raw)
+        print('DATA SOURCE: versioned project snapshot; identity with author Drive file '
+              'has not been independently verified.', flush=True)
+    else:
+        import gdown
+        temporary = raw.with_suffix('.download.tmp')
+        try:
+            if not gdown.download(id=source_id, output=str(temporary), quiet=False):
+                raise RuntimeError('Author dataset download failed.')
+            # Never reuse a partial or HTML confirmation page as cached data.
+            json.loads(temporary.read_text(encoding='utf-8'))
+            temporary.replace(raw)
+        except Exception as exc:
+            raise RuntimeError('Author Drive download unavailable. Select DATA_SOURCE="snapshot" '
+                               'to use the documented BTL project snapshot, or set DATA_FILE.') from exc
+        finally:
+            temporary.unlink(missing_ok=True)
+        source_metadata = dict(source='author Google Drive link', source_id=source_id)
     raw_hash = digest(raw)
     if args.expected_data_sha256 and raw_hash != args.expected_data_sha256:
         raise ValueError('Dataset checksum differs from the locked experiment.')
@@ -127,7 +148,8 @@ def main():
         attributes_sha256=digest(attrs), descriptions_sha256=digest(descriptions),
         source_hashes={str(f.relative_to(ROOT)): digest(f) for f in
                        [ROOT/'model/model.py', ROOT/'model/data_helper.py', ROOT/'model/evaluation.py',
-                        ROOT/'scripts/train_run.py', ROOT/'scripts/normalize_data.py']},
+                        ROOT/'scripts/train_run.py', ROOT/'scripts/normalize_data.py',
+                        ROOT/'scripts/dataset_source.py', ROOT/'resources/datasets/manifest.json']},
         packages=packages, gpu_model=torch.cuda.get_device_name(0), smoke=args.smoke)
     config_hash = hashlib.sha256(json.dumps(scientific, sort_keys=True).encode()).hexdigest()
     if args.resume:
@@ -144,7 +166,8 @@ def main():
     if (out/'provenance.json').exists():
         previous = json.loads((out/'provenance.json').read_text(encoding='utf-8'))
         prior_sessions = previous.get('sessions', [])
-    write(out/'provenance.json', dict(commit=commit, source='local override' if args.data_file else 'author Google Drive link', source_id=source_id,
+    write(out/'provenance.json', dict(commit=commit, source=source_metadata['source'],
+        dataset_source_metadata=source_metadata, source_id=source_id,
         raw_data_sha256=raw_hash, samples=sum(counts.values()), relations=len(counts),
         paper_samples=paper_samples, count_discrepancy=mismatch,
         python=sys.version, cuda=torch.version.cuda, packages=packages, gpu=torch.cuda.get_device_name(0),

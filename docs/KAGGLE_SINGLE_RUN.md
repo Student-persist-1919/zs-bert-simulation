@@ -16,16 +16,21 @@
 
 ## Dữ liệu
 
-Tự tải từ Google Drive được README tác giả dẫn, kiểm tra JSON/entities/counts.
+Mặc định DATA_SOURCE="snapshot": clone bản JSON nén từ resources/datasets cùng
+commit code, kiểm tra SHA256 của cả archive và dữ liệu giải nén, rồi kiểm tra
+JSON/entities/counts. Đây là file gốc trong BTL/data/raw; chưa xác nhận giống hệt
+file Google Drive tác giả. DATA_SOURCE="author-drive" là lựa chọn rõ ràng khi muốn
+kiểm tra link tác giả; không tự thay nguồn nếu tải lỗi.
 Nguồn: https://github.com/dinobby/ZS-BERT#dataset
 FewRel phải 80 quan hệ × 700 mẫu. Wiki-ZSL phải 113 quan hệ; Table 1 ghi 94.383 mẫu.
-File local hiện có 93.383 mẫu. Nếu bản tải tác giả cũng khác báo, phải xem nguồn và
+Snapshot Wiki-ZSL có 93.383 mẫu. Nếu bản tải tác giả cũng khác báo, phải xem nguồn và
 ghi giải trình; chỉ sau đó đặt ALLOW_WIKI_COUNT_MISMATCH=True. Không tự sửa số mẫu.
 DATA_FILE là tùy chọn khi kiểm tra local hoặc tải tác giả bị gián đoạn.
 
-Tải dữ liệu thật qua mạng và hash nguồn tác giả chưa được xác minh end-to-end
-trong môi trường local này. Không dùng việc normalize local thành công để khẳng
-định dữ liệu tải từ mạng giống hệt dữ liệu local.
+Lần smoke test Kaggle đầu đã nhận GPU T4 nhưng dừng ở gdown: không lấy được link
+FewRel của tác giả. Cảnh báo dependency Gradio/Diffusers không phải lỗi làm lần
+chạy đó dừng. Snapshot được thêm sau lỗi này để loại phụ thuộc vào Google Drive.
+Chưa xác minh end-to-end nguồn Drive; không coi snapshot là dữ liệu tác giả đã xác minh.
 
 ## Deadline và tiếp tục
 

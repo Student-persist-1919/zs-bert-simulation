@@ -1,0 +1,325 @@
+13.7s	40	Collecting gdown==5.2.0 (from -r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 12))
+13.7s	41	  Downloading gdown-5.2.0-py3-none-any.whl.metadata (5.8 kB)
+13.7s	42	Requirement already satisfied: filelock in /usr/local/lib/python3.13/dist-packages (from transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (4.2.4)
+13.8s	43	Collecting tokenizers==0.22.2 (from -r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 6))
+13.8s	44	  Downloading tokenizers-0.22.2-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.3 kB)
+13.8s	45	Requirement already satisfied: numpy in /usr/local/lib/python3.13/dist-packages (from -r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 7)) (2.1.3)
+13.8s	46	Requirement already satisfied: pandas in /usr/local/lib/python3.13/dist-packages (from -r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 8)) (2.3.3)
+13.8s	47	Requirement already satisfied: scikit-learn in /usr/local/lib/python3.13/dist-packages (from -r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 9)) (1.6.1)
+13.8s	48	Requirement already satisfied: lxml in /usr/local/lib/python3.13/dist-packages (from -r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 10)) (6.1.3)
+13.8s	49	Requirement already satisfied: beautifulsoup4 in /usr/local/lib/python3.13/dist-packages (from -r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 11)) (4.13.5)
+13.8s	50	Collecting gdown==5.2.0 (from -r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 12))
+13.8s	51	  Downloading gdown-5.2.0-py3-none-any.whl.metadata (5.8 kB)
+13.8s	52	Requirement already satisfied: filelock in /usr/local/lib/python3.13/dist-packages (from transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (4.2.4)
+13.8s	53	Collecting huggingface-hub<1.0,>=0.34.0 (from transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4))
+13.8s	54	  Downloading huggingface_hub-0.36.2-py3-none-any.whl.metadata (15 kB)
+13.8s	55	Requirement already satisfied: packaging>=20.0 in /usr/local/lib/python3.13/dist-packages (from transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (26.3)
+13.8s	56	Requirement already satisfied: pyyaml>=5.1 in /usr/local/lib/python3.13/dist-packages (from transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (6.0.3)
+13.8s	57	Requirement already satisfied: regex!=2019.12.17 in /usr/local/lib/python3.13/dist-packages (from transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (2025.11.3)
+13.8s	58	Requirement already satisfied: requests in /usr/local/lib/python3.13/dist-packages (from transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (2.34.2)
+13.9s	59	Requirement already satisfied: safetensors>=0.4.3 in /usr/local/lib/python3.13/dist-packages (from transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (0.8.0)
+13.9s	60	Requirement already satisfied: tqdm>=4.27 in /usr/local/lib/python3.13/dist-packages (from transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (4.67.3)
+13.9s	61	Requirement already satisfied: torch>=1.11.0 in /usr/local/lib/python3.13/dist-packages (from sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (2.11.0+cu130)
+13.9s	62	Requirement already satisfied: scipy in /usr/local/lib/python3.13/dist-packages (from sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (1.16.3)
+13.9s	63	Requirement already satisfied: typing_extensions>=4.5.0 in /usr/local/lib/python3.13/dist-packages (from sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (4.16.0)
+13.9s	64	Requirement already satisfied: fsspec>=2023.5.0 in /usr/local/lib/python3.13/dist-packages (from huggingface-hub<1.0,>=0.34.0->transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (2025.12.0)
+13.9s	65	Requirement already satisfied: hf-xet<2.0.0,>=1.1.3 in /usr/local/lib/python3.13/dist-packages (from huggingface-hub<1.0,>=0.34.0->transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (1.7.0)
+13.9s	66	Requirement already satisfied: python-dateutil>=2.8.2 in /usr/local/lib/python3.13/dist-packages (from pandas->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 8)) (2.9.0.post0)
+13.9s	67	Requirement already satisfied: pytz>=2020.1 in /usr/local/lib/python3.13/dist-packages (from pandas->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 8)) (2025.2)
+13.9s	68	Requirement already satisfied: tzdata>=2022.7 in /usr/local/lib/python3.13/dist-packages (from pandas->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 8)) (2026.5)
+13.9s	69	Requirement already satisfied: joblib>=1.2.0 in /usr/local/lib/python3.13/dist-packages (from scikit-learn->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 9)) (1.6.0)
+13.9s	70	Requirement already satisfied: threadpoolctl>=3.1.0 in /usr/local/lib/python3.13/dist-packages (from scikit-learn->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 9)) (3.7.0)
+13.9s	71	Requirement already satisfied: soupsieve>1.2 in /usr/local/lib/python3.13/dist-packages (from beautifulsoup4->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 11)) (3.0.4)
+13.9s	72	Requirement already satisfied: cloudpickle>=3.0 in /usr/local/lib/python3.13/dist-packages (from joblib>=1.2.0->scikit-learn->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 9)) (3.1.2)
+13.9s	73	Requirement already satisfied: six>=1.5 in /usr/local/lib/python3.13/dist-packages (from python-dateutil>=2.8.2->pandas->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 8)) (1.17.0)
+14.0s	74	Requirement already satisfied: setuptools<82 in /usr/local/lib/python3.13/dist-packages (from torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (81.0.0)
+14.0s	75	Requirement already satisfied: sympy>=1.13.3 in /usr/local/lib/python3.13/dist-packages (from torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (1.14.0)
+14.0s	76	Requirement already satisfied: networkx>=2.5.1 in /usr/local/lib/python3.13/dist-packages (from torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (3.7)
+14.0s	77	Requirement already satisfied: jinja2 in /usr/local/lib/python3.13/dist-packages (from torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (3.1.6)
+14.0s	78	Requirement already satisfied: cuda-toolkit==13.0.2 in /usr/local/lib/python3.13/dist-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (13.0.2)
+14.0s	79	Requirement already satisfied: cuda-bindings<14,>=13.0.3 in /usr/local/lib/python3.13/dist-packages (from torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (13.0.3)
+14.0s	80	Requirement already satisfied: nvidia-cudnn-cu13==9.19.0.56 in /usr/local/lib/python3.13/dist-packages (from torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (9.19.0.56)
+14.0s	81	Requirement already satisfied: nvidia-cusparselt-cu13==0.8.0 in /usr/local/lib/python3.13/dist-packages (from torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (0.8.0)
+14.0s	82	Requirement already satisfied: nvidia-nccl-cu13==2.28.9 in /usr/local/lib/python3.13/dist-packages (from torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (2.28.9)
+14.0s	83	Requirement already satisfied: nvidia-nvshmem-cu13==3.4.5 in /usr/local/lib/python3.13/dist-packages (from torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (3.4.5)
+14.0s	84	Requirement already satisfied: triton==3.6.0 in /usr/local/lib/python3.13/dist-packages (from torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (3.6.0)
+14.0s	85	Requirement already satisfied: nvidia-cublas==13.1.0.3.* in /usr/local/lib/python3.13/dist-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (13.1.0.3)
+14.0s	86	Requirement already satisfied: nvidia-cuda-runtime==13.0.96.* in /usr/local/lib/python3.13/dist-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (13.0.96)
+14.0s	87	Requirement already satisfied: nvidia-cufft==12.0.0.61.* in /usr/local/lib/python3.13/dist-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (12.0.0.61)
+14.0s	88	Requirement already satisfied: nvidia-cufile==1.15.1.6.* in /usr/local/lib/python3.13/dist-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (1.15.1.6)
+14.0s	89	Requirement already satisfied: nvidia-cuda-cupti==13.0.85.* in /usr/local/lib/python3.13/dist-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (13.0.85)
+14.0s	90	Requirement already satisfied: nvidia-curand==10.4.0.35.* in /usr/local/lib/python3.13/dist-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (10.4.0.35)
+14.0s	91	Requirement already satisfied: nvidia-cusolver==12.0.4.66.* in /usr/local/lib/python3.13/dist-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (12.0.4.66)
+14.0s	92	Requirement already satisfied: nvidia-cusparse==12.6.3.3.* in /usr/local/lib/python3.13/dist-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (12.6.3.3)
+14.0s	93	Requirement already satisfied: nvidia-nvjitlink==13.0.88.* in /usr/local/lib/python3.13/dist-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (13.0.88)
+14.0s	94	Requirement already satisfied: nvidia-cuda-nvrtc==13.0.88.* in /usr/local/lib/python3.13/dist-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (13.0.88)
+14.0s	95	Requirement already satisfied: nvidia-nvtx==13.0.85.* in /usr/local/lib/python3.13/dist-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (13.0.85)
+14.0s	96	Collecting huggingface-hub<1.0,>=0.34.0 (from transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4))
+14.0s	97	  Downloading huggingface_hub-0.36.2-py3-none-any.whl.metadata (15 kB)
+14.0s	98	Requirement already satisfied: packaging>=20.0 in /usr/local/lib/python3.13/dist-packages (from transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (26.3)
+14.0s	99	Requirement already satisfied: pyyaml>=5.1 in /usr/local/lib/python3.13/dist-packages (from transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (6.0.3)
+14.0s	100	Requirement already satisfied: regex!=2019.12.17 in /usr/local/lib/python3.13/dist-packages (from transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (2025.11.3)
+14.0s	101	Requirement already satisfied: requests in /usr/local/lib/python3.13/dist-packages (from transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (2.34.2)
+14.0s	102	Requirement already satisfied: safetensors>=0.4.3 in /usr/local/lib/python3.13/dist-packages (from transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (0.8.0)
+14.0s	103	Requirement already satisfied: tqdm>=4.27 in /usr/local/lib/python3.13/dist-packages (from transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (4.67.3)
+14.0s	104	Requirement already satisfied: torch>=1.11.0 in /usr/local/lib/python3.13/dist-packages (from sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (2.11.0+cu130)
+14.0s	105	Requirement already satisfied: scipy in /usr/local/lib/python3.13/dist-packages (from sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (1.16.3)
+14.0s	106	Requirement already satisfied: typing_extensions>=4.5.0 in /usr/local/lib/python3.13/dist-packages (from sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (4.16.0)
+14.0s	107	Requirement already satisfied: fsspec>=2023.5.0 in /usr/local/lib/python3.13/dist-packages (from huggingface-hub<1.0,>=0.34.0->transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (2025.12.0)
+14.0s	108	Requirement already satisfied: hf-xet<2.0.0,>=1.1.3 in /usr/local/lib/python3.13/dist-packages (from huggingface-hub<1.0,>=0.34.0->transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (1.7.0)
+14.0s	109	Requirement already satisfied: python-dateutil>=2.8.2 in /usr/local/lib/python3.13/dist-packages (from pandas->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 8)) (2.9.0.post0)
+14.0s	110	Requirement already satisfied: pytz>=2020.1 in /usr/local/lib/python3.13/dist-packages (from pandas->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 8)) (2025.2)
+14.0s	111	Requirement already satisfied: tzdata>=2022.7 in /usr/local/lib/python3.13/dist-packages (from pandas->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 8)) (2026.5)
+14.0s	112	Requirement already satisfied: joblib>=1.2.0 in /usr/local/lib/python3.13/dist-packages (from scikit-learn->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 9)) (1.6.0)
+14.0s	113	Requirement already satisfied: threadpoolctl>=3.1.0 in /usr/local/lib/python3.13/dist-packages (from scikit-learn->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 9)) (3.7.0)
+14.0s	114	Requirement already satisfied: soupsieve>1.2 in /usr/local/lib/python3.13/dist-packages (from beautifulsoup4->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 11)) (3.0.4)
+14.0s	115	Requirement already satisfied: cloudpickle>=3.0 in /usr/local/lib/python3.13/dist-packages (from joblib>=1.2.0->scikit-learn->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 9)) (3.1.2)
+14.0s	116	Requirement already satisfied: six>=1.5 in /usr/local/lib/python3.13/dist-packages (from python-dateutil>=2.8.2->pandas->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 8)) (1.17.0)
+14.0s	117	Requirement already satisfied: setuptools<82 in /usr/local/lib/python3.13/dist-packages (from torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (81.0.0)
+14.0s	118	Requirement already satisfied: sympy>=1.13.3 in /usr/local/lib/python3.13/dist-packages (from torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (1.14.0)
+14.0s	119	Requirement already satisfied: networkx>=2.5.1 in /usr/local/lib/python3.13/dist-packages (from torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (3.7)
+14.0s	120	Requirement already satisfied: jinja2 in /usr/local/lib/python3.13/dist-packages (from torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (3.1.6)
+14.0s	121	Requirement already satisfied: cuda-toolkit==13.0.2 in /usr/local/lib/python3.13/dist-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (13.0.2)
+14.0s	122	Requirement already satisfied: cuda-bindings<14,>=13.0.3 in /usr/local/lib/python3.13/dist-packages (from torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (13.0.3)
+14.0s	123	Requirement already satisfied: nvidia-cudnn-cu13==9.19.0.56 in /usr/local/lib/python3.13/dist-packages (from torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (9.19.0.56)
+14.0s	124	Requirement already satisfied: nvidia-cusparselt-cu13==0.8.0 in /usr/local/lib/python3.13/dist-packages (from torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (0.8.0)
+14.0s	125	Requirement already satisfied: nvidia-nccl-cu13==2.28.9 in /usr/local/lib/python3.13/dist-packages (from torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (2.28.9)
+14.0s	126	Requirement already satisfied: nvidia-nvshmem-cu13==3.4.5 in /usr/local/lib/python3.13/dist-packages (from torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (3.4.5)
+14.0s	127	Requirement already satisfied: triton==3.6.0 in /usr/local/lib/python3.13/dist-packages (from torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (3.6.0)
+14.0s	128	Requirement already satisfied: nvidia-cublas==13.1.0.3.* in /usr/local/lib/python3.13/dist-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (13.1.0.3)
+14.0s	129	Requirement already satisfied: nvidia-cuda-runtime==13.0.96.* in /usr/local/lib/python3.13/dist-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (13.0.96)
+14.0s	130	Requirement already satisfied: nvidia-cufft==12.0.0.61.* in /usr/local/lib/python3.13/dist-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (12.0.0.61)
+14.0s	131	Requirement already satisfied: nvidia-cufile==1.15.1.6.* in /usr/local/lib/python3.13/dist-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (1.15.1.6)
+14.0s	132	Requirement already satisfied: nvidia-cuda-cupti==13.0.85.* in /usr/local/lib/python3.13/dist-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (13.0.85)
+14.0s	133	Requirement already satisfied: nvidia-curand==10.4.0.35.* in /usr/local/lib/python3.13/dist-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (10.4.0.35)
+14.0s	134	Requirement already satisfied: nvidia-cusolver==12.0.4.66.* in /usr/local/lib/python3.13/dist-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (12.0.4.66)
+14.0s	135	Requirement already satisfied: nvidia-cusparse==12.6.3.3.* in /usr/local/lib/python3.13/dist-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (12.6.3.3)
+14.0s	136	Requirement already satisfied: nvidia-nvjitlink==13.0.88.* in /usr/local/lib/python3.13/dist-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (13.0.88)
+14.0s	137	Requirement already satisfied: nvidia-cuda-nvrtc==13.0.88.* in /usr/local/lib/python3.13/dist-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (13.0.88)
+14.0s	138	Requirement already satisfied: nvidia-nvtx==13.0.85.* in /usr/local/lib/python3.13/dist-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (13.0.85)
+14.0s	139	Requirement already satisfied: cuda-pathfinder~=1.1 in /usr/local/lib/python3.13/dist-packages (from cuda-bindings<14,>=13.0.3->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (1.8.4)
+14.0s	140	Requirement already satisfied: mpmath<1.4,>=1.1.0 in /usr/local/lib/python3.13/dist-packages (from sympy>=1.13.3->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (1.3.0)
+14.1s	141	Requirement already satisfied: MarkupSafe>=2.0 in /usr/local/lib/python3.13/dist-packages (from jinja2->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (3.0.4)
+14.1s	142	Requirement already satisfied: charset_normalizer<4,>=2 in /usr/local/lib/python3.13/dist-packages (from requests->transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (3.4.9)
+14.1s	143	Requirement already satisfied: idna<4,>=2.5 in /usr/local/lib/python3.13/dist-packages (from requests->transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (3.20)
+14.1s	144	Requirement already satisfied: urllib3<3,>=1.26 in /usr/local/lib/python3.13/dist-packages (from requests->transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (2.8.0)
+14.1s	145	Requirement already satisfied: certifi>=2023.5.7 in /usr/local/lib/python3.13/dist-packages (from requests->transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (2026.10.23)
+14.1s	146	Requirement already satisfied: PySocks!=1.5.7,>=1.5.6 in /usr/local/lib/python3.13/dist-packages (from requests[socks]->gdown==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 12)) (1.7.1)
+14.1s	147	Downloading transformers-4.57.3-py3-none-any.whl (12.0 MB)
+14.2s	148	Requirement already satisfied: cuda-pathfinder~=1.1 in /usr/local/lib/python3.13/dist-packages (from cuda-bindings<14,>=13.0.3->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (1.8.4)
+14.2s	149	Requirement already satisfied: mpmath<1.4,>=1.1.0 in /usr/local/lib/python3.13/dist-packages (from sympy>=1.13.3->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (1.3.0)
+14.2s	150	Requirement already satisfied: MarkupSafe>=2.0 in /usr/local/lib/python3.13/dist-packages (from jinja2->torch>=1.11.0->sentence-transformers==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 5)) (3.0.4)
+14.2s	151	Requirement already satisfied: charset_normalizer<4,>=2 in /usr/local/lib/python3.13/dist-packages (from requests->transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (3.4.9)
+14.2s	152	Requirement already satisfied: idna<4,>=2.5 in /usr/local/lib/python3.13/dist-packages (from requests->transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (3.20)
+14.2s	153	Requirement already satisfied: urllib3<3,>=1.26 in /usr/local/lib/python3.13/dist-packages (from requests->transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (2.8.0)
+14.2s	154	Requirement already satisfied: certifi>=2023.5.7 in /usr/local/lib/python3.13/dist-packages (from requests->transformers==4.57.3->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 4)) (2026.10.23)
+14.2s	155	Requirement already satisfied: PySocks!=1.5.7,>=1.5.6 in /usr/local/lib/python3.13/dist-packages (from requests[socks]->gdown==5.2.0->-r /kaggle/working/zs-bert-simulation/requirements-kaggle.txt (line 12)) (1.7.1)
+14.2s	156	Downloading transformers-4.57.3-py3-none-any.whl (12.0 MB)
+14.4s	157	   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.0/12.0 MB 37.9 MB/s  0:00:00
+14.4s	158	Downloading tokenizers-0.22.2-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.3 MB)
+14.5s	159	   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.3/3.3 MB 65.6 MB/s  0:00:00
+14.5s	160	Downloading sentence_transformers-5.2.0-py3-none-any.whl (493 kB)
+14.5s	161	Downloading gdown-5.2.0-py3-none-any.whl (18 kB)
+14.6s	162	Downloading huggingface_hub-0.36.2-py3-none-any.whl (566 kB)
+14.6s	163	   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 566.4/566.4 kB 13.3 MB/s  0:00:00
+14.6s	164	   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.0/12.0 MB 37.9 MB/s  0:00:00
+14.6s	165	Downloading tokenizers-0.22.2-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.3 MB)
+14.6s	166	   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.3/3.3 MB 65.6 MB/s  0:00:00
+14.6s	167	Downloading sentence_transformers-5.2.0-py3-none-any.whl (493 kB)
+14.6s	168	Downloading gdown-5.2.0-py3-none-any.whl (18 kB)
+14.6s	169	Downloading huggingface_hub-0.36.2-py3-none-any.whl (566 kB)
+14.6s	170	   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 566.4/566.4 kB 13.3 MB/s  0:00:00
+16.6s	171	Installing collected packages: huggingface-hub, tokenizers, gdown, transformers, sentence-transformers
+16.6s	172	  Attempting uninstall: huggingface-hub
+16.6s	173	    Found existing installation: huggingface_hub 1.33.0
+16.7s	174	    Uninstalling huggingface_hub-1.33.0:
+16.8s	175	Installing collected packages: huggingface-hub, tokenizers, gdown, transformers, sentence-transformers
+16.8s	176	  Attempting uninstall: huggingface-hub
+16.8s	177	    Found existing installation: huggingface_hub 1.33.0
+16.8s	178	    Uninstalling huggingface_hub-1.33.0:
+16.9s	179	      Successfully uninstalled huggingface_hub-1.33.0
+17.1s	180	      Successfully uninstalled huggingface_hub-1.33.0
+17.3s	181	  Attempting uninstall: tokenizers
+17.3s	182	    Found existing installation: tokenizers 0.23.3
+17.3s	183	    Uninstalling tokenizers-0.23.3:
+17.4s	184	      Successfully uninstalled tokenizers-0.23.3
+17.5s	185	  Attempting uninstall: tokenizers
+17.5s	186	    Found existing installation: tokenizers 0.23.3
+17.5s	187	    Uninstalling tokenizers-0.23.3:
+17.5s	188	      Successfully uninstalled tokenizers-0.23.3
+17.5s	189	  Attempting uninstall: gdown
+17.5s	190	    Found existing installation: gdown 5.2.2
+17.5s	191	    Uninstalling gdown-5.2.2:
+17.5s	192	      Successfully uninstalled gdown-5.2.2
+17.5s	193	  Attempting uninstall: transformers
+17.6s	194	    Found existing installation: transformers 5.20.2
+17.7s	195	  Attempting uninstall: gdown
+17.7s	196	    Found existing installation: gdown 5.2.2
+17.7s	197	    Uninstalling gdown-5.2.2:
+17.7s	198	      Successfully uninstalled gdown-5.2.2
+17.7s	199	  Attempting uninstall: transformers
+17.7s	200	    Found existing installation: transformers 5.20.2
+18.2s	201	    Uninstalling transformers-5.20.2:
+18.4s	202	    Uninstalling transformers-5.20.2:
+20.9s	203	      Successfully uninstalled transformers-5.20.2
+21.1s	204	      Successfully uninstalled transformers-5.20.2
+29.7s	205	  Attempting uninstall: sentence-transformers
+29.8s	206	    Found existing installation: sentence-transformers 5.7.0
+29.8s	207	    Uninstalling sentence-transformers-5.7.0:
+29.9s	208	  Attempting uninstall: sentence-transformers
+29.9s	209	    Found existing installation: sentence-transformers 5.7.0
+29.9s	210	    Uninstalling sentence-transformers-5.7.0:
+30.0s	211	      Successfully uninstalled sentence-transformers-5.7.0
+30.2s	212	      Successfully uninstalled sentence-transformers-5.7.0
+30.3s	213	
+30.3s	214	ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+30.3s	215	gradio-client 2.7.2 requires huggingface-hub<3.0,>=1.16.0, but you have huggingface-hub 0.36.2 which is incompatible.
+30.3s	216	gradio 6.30.0 requires huggingface-hub<3.0,>=1.16.0, but you have huggingface-hub 0.36.2 which is incompatible.
+30.3s	217	gradio 6.30.0 requires pillow<13.0,>=8.0, but you have pillow 13.0.0 which is incompatible.
+30.3s	218	diffusers 0.42.0 requires huggingface-hub<3.0,>=1.32.0, but you have huggingface-hub 0.36.2 which is incompatible.
+30.4s	219	Successfully installed gdown-5.2.0 huggingface-hub-0.36.2 sentence-transformers-5.2.0 tokenizers-0.22.2 transformers-4.57.3
+30.5s	220	
+30.5s	221	Successfully installed gdown-5.2.0 huggingface-hub-0.36.2 sentence-transformers-5.2.0 tokenizers-0.22.2 transformers-4.57.3
+30.5s	222	ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+30.5s	223	gradio-client 2.7.2 requires huggingface-hub<3.0,>=1.16.0, but you have huggingface-hub 0.36.2 which is incompatible.
+30.5s	224	gradio 6.30.0 requires huggingface-hub<3.0,>=1.16.0, but you have huggingface-hub 0.36.2 which is incompatible.
+30.5s	225	gradio 6.30.0 requires pillow<13.0,>=8.0, but you have pillow 13.0.0 which is incompatible.
+30.5s	226	diffusers 0.42.0 requires huggingface-hub<3.0,>=1.32.0, but you have huggingface-hub 0.36.2 which is incompatible.
+30.5s	227	
+30.5s	228	ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+30.5s	229	gradio-client 2.7.2 requires huggingface-hub<3.0,>=1.16.0, but you have huggingface-hub 0.36.2 which is incompatible.
+30.5s	230	gradio 6.30.0 requires huggingface-hub<3.0,>=1.16.0, but you have huggingface-hub 0.36.2 which is incompatible.
+30.5s	231	gradio 6.30.0 requires pillow<13.0,>=8.0, but you have pillow 13.0.0 which is incompatible.
+30.5s	232	diffusers 0.42.0 requires huggingface-hub<3.0,>=1.32.0, but you have huggingface-hub 0.36.2 which is incompatible.
+53.4s	233	2.11.0+cu130 Tesla T4
+53.6s	234	2.11.0+cu130 Tesla T4
+60.6s	235	Traceback (most recent call last):
+60.6s	236	  File "/usr/local/lib/python3.13/dist-packages/gdown/download.py", line 267, in download
+60.6s	237	    url = get_url_from_gdrive_confirmation(res.text)
+60.6s	238	  File "/usr/local/lib/python3.13/dist-packages/gdown/download.py", line 55, in get_url_from_gdrive_confirmation
+60.6s	239	    raise FileURLRetrievalError(
+60.6s	240	    ...<4 lines>...
+60.6s	241	    )
+60.6s	242	gdown.exceptions.FileURLRetrievalError: Cannot retrieve the public link of the file. You may need to change the permission to 'Anyone with the link', or have had many accesses. Check FAQ in https://github.com/wkentaro/gdown?tab=readme-ov-file#faq.
+60.6s	243	
+60.6s	244	During handling of the above exception, another exception occurred:
+60.6s	245	
+60.6s	246	Traceback (most recent call last):
+60.6s	247	  File "/kaggle/working/zs-bert-simulation/scripts/kaggle_run.py", line 177, in <module>
+60.6s	248	    main()
+60.6s	249	    ~~~~^^
+60.6s	250	  File "/kaggle/working/zs-bert-simulation/scripts/kaggle_run.py", line 66, in main
+60.6s	251	    if not gdown.download(id=source_id, output=str(raw), quiet=False):
+60.6s	252	           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+60.6s	253	  File "/usr/local/lib/python3.13/dist-packages/gdown/download.py", line 278, in download
+60.6s	254	    raise FileURLRetrievalError(message)
+60.6s	255	gdown.exceptions.FileURLRetrievalError: Failed to retrieve file url:
+60.6s	256	
+60.6s	257		Cannot retrieve the public link of the file. You may need to change
+60.6s	258		the permission to 'Anyone with the link', or have had many accesses.
+60.6s	259		Check FAQ in https://github.com/wkentaro/gdown?tab=readme-ov-file#faq.
+60.6s	260	
+60.6s	261	You may still be able to access the file from the browser:
+60.6s	262	
+60.6s	263		https://drive.google.com/uc?id=1QY-5R2zqLPnT5DDF5phTbSvEeBkQRh7A
+60.6s	264	
+60.6s	265	but Gdown can't. Please check connections and permissions.
+60.8s	266	Traceback (most recent call last):
+60.8s	267	  File "/usr/local/lib/python3.13/dist-packages/gdown/download.py", line 267, in download
+60.8s	268	    url = get_url_from_gdrive_confirmation(res.text)
+60.8s	269	  File "/usr/local/lib/python3.13/dist-packages/gdown/download.py", line 55, in get_url_from_gdrive_confirmation
+60.8s	270	    raise FileURLRetrievalError(
+60.8s	271	    ...<4 lines>...
+60.8s	272	    )
+60.8s	273	gdown.exceptions.FileURLRetrievalError: Cannot retrieve the public link of the file. You may need to change the permission to 'Anyone with the link', or have had many accesses. Check FAQ in https://github.com/wkentaro/gdown?tab=readme-ov-file#faq.
+60.8s	274	
+60.8s	275	During handling of the above exception, another exception occurred:
+60.8s	276	
+60.8s	277	Traceback (most recent call last):
+60.8s	278	  File "/kaggle/working/zs-bert-simulation/scripts/kaggle_run.py", line 177, in <module>
+60.8s	279	    main()
+60.8s	280	    ~~~~^^
+60.8s	281	  File "/kaggle/working/zs-bert-simulation/scripts/kaggle_run.py", line 66, in main
+60.8s	282	    if not gdown.download(id=source_id, output=str(raw), quiet=False):
+60.8s	283	           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+60.8s	284	  File "/usr/local/lib/python3.13/dist-packages/gdown/download.py", line 278, in download
+60.8s	285	    raise FileURLRetrievalError(message)
+60.8s	286	gdown.exceptions.FileURLRetrievalError: Failed to retrieve file url:
+60.8s	287	
+60.8s	288		Cannot retrieve the public link of the file. You may need to change
+60.8s	289		the permission to 'Anyone with the link', or have had many accesses.
+60.8s	290		Check FAQ in https://github.com/wkentaro/gdown?tab=readme-ov-file#faq.
+60.8s	291	
+60.8s	292	You may still be able to access the file from the browser:
+60.8s	293	
+60.8s	294		https://drive.google.com/uc?id=1QY-5R2zqLPnT5DDF5phTbSvEeBkQRh7A
+60.8s	295	
+60.8s	296	but Gdown can't. Please check connections and permissions.
+60.8s	297	
+60.8s	298	Traceback (most recent call last):
+60.8s	299	  File "/usr/local/lib/python3.13/dist-packages/gdown/download.py", line 267, in download
+60.8s	300	    url = get_url_from_gdrive_confirmation(res.text)
+60.8s	301	  File "/usr/local/lib/python3.13/dist-packages/gdown/download.py", line 55, in get_url_from_gdrive_confirmation
+60.8s	302	    raise FileURLRetrievalError(
+60.8s	303	    ...<4 lines>...
+60.8s	304	    )
+60.8s	305	gdown.exceptions.FileURLRetrievalError: Cannot retrieve the public link of the file. You may need to change the permission to 'Anyone with the link', or have had many accesses. Check FAQ in https://github.com/wkentaro/gdown?tab=readme-ov-file#faq.
+60.8s	306	
+60.8s	307	During handling of the above exception, another exception occurred:
+60.8s	308	
+60.8s	309	Traceback (most recent call last):
+60.8s	310	  File "/kaggle/working/zs-bert-simulation/scripts/kaggle_run.py", line 177, in <module>
+60.8s	311	    main()
+60.8s	312	    ~~~~^^
+60.8s	313	  File "/kaggle/working/zs-bert-simulation/scripts/kaggle_run.py", line 66, in main
+60.8s	314	    if not gdown.download(id=source_id, output=str(raw), quiet=False):
+60.8s	315	           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+60.8s	316	  File "/usr/local/lib/python3.13/dist-packages/gdown/download.py", line 278, in download
+60.8s	317	    raise FileURLRetrievalError(message)
+60.8s	318	gdown.exceptions.FileURLRetrievalError: Failed to retrieve file url:
+60.8s	319	
+60.8s	320		Cannot retrieve the public link of the file. You may need to change
+60.8s	321		the permission to 'Anyone with the link', or have had many accesses.
+60.8s	322		Check FAQ in https://github.com/wkentaro/gdown?tab=readme-ov-file#faq.
+60.8s	323	
+60.8s	324	You may still be able to access the file from the browser:
+60.8s	325	
+60.8s	326		https://drive.google.com/uc?id=1QY-5R2zqLPnT5DDF5phTbSvEeBkQRh7A
+60.8s	327	
+60.8s	328	but Gdown can't. Please check connections and permissions.
+61.7s	329	Traceback (most recent call last):
+61.7s	330	  File "<string>", line 1, in <module>
+61.7s	331	    import sys;import papermill as pm;pm.execute_notebook("__notebook__.ipynb","__notebook__.ipynb",progress_bar=False,log_output=True,stdout_file=sys.stdout,stderr_file=sys.stderr,allow_errors=False,timeout=43200)
+61.7s	332	                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+61.7s	333	  File "/usr/local/lib/python3.13/dist-packages/papermill/execute.py", line 131, in execute_notebook
+61.7s	334	    raise_for_execution_errors(nb, output_path)
+61.7s	335	    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+61.7s	336	  File "/usr/local/lib/python3.13/dist-packages/papermill/execute.py", line 251, in raise_for_execution_errors
+61.7s	337	    raise error
+61.7s	338	papermill.exceptions.PapermillExecutionError: 
+61.7s	339	---------------------------------------------------------------------------
+61.7s	340	Exception encountered at "In [3]":
+61.7s	341	---------------------------------------------------------------------------
+61.7s	342	CalledProcessError                        Traceback (most recent call last)
+61.7s	343	/tmp/ipykernel_25/2591238413.py in <cell line: 0>()
+61.7s	344	     12 if SMOKE_TEST:
+61.7s	345	     13     cmd += ["--smoke"]
+61.7s	346	---> 14 subprocess.run(cmd, check=True)
+61.7s	347	
+61.7s	348	/usr/lib/python3.13/subprocess.py in run(input, capture_output, timeout, check, *popenargs, **kwargs)
+61.7s	349	    576         retcode = process.poll()
+61.7s	350	    577         if check and retcode:
+61.7s	351	--> 578             raise CalledProcessError(retcode, process.args,
+61.7s	352	    579                                      output=stdout, stderr=stderr)
+61.7s	353	    580     return CompletedProcess(process.args, retcode, stdout, stderr)
+61.7s	354	
+61.7s	355	CalledProcessError: Command '['/usr/bin/python3', '-u', '/kaggle/working/zs-bert-simulation/scripts/kaggle_run.py', '--dataset', 'fewrel', '--m', '10', '--run-id', '1', '--deadline', '1795180834.8721476', '--smoke']' returned non-zero exit status 1.
+61.7s	356	
+64.0s	357	/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+64.0s	358	  cells[i][c] = re.sub('\\\\\|', '|', cell)
+64.2s	359	/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+64.2s	360	  text = re.sub(r'_', '\_', text) # Escape underscores in display text
+65.0s	361	[NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+65.1s	362	[NbConvertApp] Writing 32352 bytes to __notebook__.ipynb
+67.9s	363	[NbConvertApp] Converting notebook __notebook__.ipynb to html
+68.5s	364	[NbConvertApp] Writing 311151 bytes to __results__.html
