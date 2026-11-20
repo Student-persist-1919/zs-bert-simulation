@@ -1,100 +1,53 @@
-# ZS-BERT — FewRel: m=5, 10, 15 / 5 runs
+# ZS-BERT — tái lập trên Kaggle Free
 
-Dự án tái lập thí nghiệm zero-shot relation extraction của bài báo **ZS-BERT: Towards Zero-Shot Relation Extraction with Attribute Representation Learning** (NAACL 2021).
+Tái lập ZS-BERT trong Table 2 (NAACL 2021): FewRel và Wiki-ZSL, m=5/10/15,
+5 seed 300–304, 10 epoch/run. 30 runs có thể cần hơn 30 phiên 12 giờ.
 
-Ba notebook bên dưới có thể import riêng vào Kaggle và chạy độc lập. Mỗi notebook chạy **5 seed: 300–304**, chọn lại tập quan hệ unseen, khởi tạo model/optimizer mới và xuất **P/R/F1 trung bình ± độ lệch chuẩn mẫu**.
+## Bắt đầu
 
-- [FewRel m=5 — 5 runs](notebooks/kaggle/zs-bert-m-5-5runs.ipynb)
-- [FewRel m=10 — 5 runs](notebooks/kaggle/zs-bert-m-10-5runs.ipynb)
-- [FewRel m=15 — 5 runs](notebooks/kaggle/zs-bert-m-15-5runs.ipynb)
+1. Đọc [kế hoạch](docs/IMPLEMENTATION_PLAN.md) và [hướng dẫn từng run](docs/KAGGLE_SINGLE_RUN.md).
+2. Push bộ code này trước khi dùng notebook mới (notebook tải scripts từ repo GitHub).
+3. Import một notebook, GPU + Internet, chọn DATASET và RUN_ID.
+4. Chạy smoke test cho cả hai dataset và kiểm tra pause/resume trước runs chính thức.
+5. Khóa CODE_REV và checksum dữ liệu đã kiểm tra; SMOKE_TEST=False; Save & Run All.
+6. Download evidence ZIP và notebook đã chạy; nhập kết quả bằng scripts/collect_results.py.
 
-## Cấu trúc thư mục
+- [m=5](notebooks/kaggle/zs-bert-m-5.ipynb)
+- [m=10](notebooks/kaggle/zs-bert-m-10.ipynb)
+- [m=15](notebooks/kaggle/zs-bert-m-15.ipynb)
+- [Kết quả và tiến độ](notebooks/kaggle/RESULTS.md)
+- [CSV từng run](notebooks/kaggle/results.csv)
 
-```text
-BTL/
-├── notebooks/
-│   ├── kaggle/
-│   │   ├── zs-bert-m-5-5runs.ipynb
-│   │   ├── zs-bert-m-10-5runs.ipynb
-│   │   └── zs-bert-m-15-5runs.ipynb
-│   └── legacy/
-│       └── zs-bert.ipynb              # Notebook cũ, chạy một seed
-├── model/
-│   ├── __init__.py
-│   ├── model.py
-│   ├── data_helper.py
-│   ├── evaluation.py
-│   ├── train_fewrel.py               # Script một run cũ
-│   └── train_wiki.py
-├── scripts/
-│   ├── build_resources.py
-│   ├── preprocess_fewrel.py          # Script tiền xử lý cũ
-│   └── preprocess_wikizsl.py
-├── resources/
-│   ├── pid2name.json
-│   └── property_list.html           # Tài nguyên của implementation cũ
-├── docs/
-│   ├── KAGGLE.md                    # Chạy và tiếp tục sau khi ngắt phiên
-│   ├── REPRODUCIBILITY.md           # Cấu hình, metric và giới hạn tái lập
-│   ├── papers/
-│   │   └── 2021.naacl-main.272.pdf
-│   ├── legacy/
-│   │   └── README-original.md       # Tài liệu phiên bản cũ, lưu tham khảo
-│   └── local/                      # Tài liệu cá nhân; không đưa lên Git
-├── data/
-│   └── raw/                        # Dữ liệu local; không đưa lên Git
-│       ├── fewrel_dataset.json
-│       └── wikizsl_dataset.json
-├── requirements.txt                # Phụ thuộc của implementation cũ
-├── requirements-kaggle.txt          # Phụ thuộc tương ứng 3 notebook mới
-├── .gitignore
-└── README.md
-```
+## Cấu trúc
 
-`data/` và `docs/local/` chỉ có trên máy local, được bỏ qua bởi Git. Thư mục kết quả/checkpoint do Kaggle tạo lúc chạy cũng không được đưa vào repo.
+- model/: model/loss, dataset và metric implementation hiện có.
+- scripts/kaggle_run.py: tải dữ liệu/model, kiểm tra config, điều phối một seed, đóng gói bằng chứng.
+- scripts/train_run.py: train/evaluate, checkpoint và deadline.
+- scripts/normalize_data.py và build_attributes.py: tiền xử lý và thuộc tính cố định.
+- scripts/collect_results.py: kiểm tra/nhập bằng chứng và tổng hợp đủ 5 seed.
+- notebooks/kaggle/: 3 notebook, results.csv, RESULTS.md; runs/ chứa evidence từng attempt.
+- notebooks/kaggle/executed/: notebook có output tải từ version Kaggle.
+- notebooks/kaggle/historical/: metric trích log của bộ chạy cũ, chưa gộp vào bộ mới.
+- notebooks/legacy/: notebook cũ giữ nguyên làm bằng chứng lịch sử.
+- docs/: hướng dẫn, kế hoạch, bài báo và giới hạn tái lập.
+- resources/: tài nguyên implementation cũ; runner mới dùng snapshot mô tả tác giả có checksum.
+- data/raw/: dữ liệu local không commit; notebook mới tự tải link tác giả.
 
-## Chạy trên Kaggle
+## Trạng thái và giới hạn
 
-1. Mở một notebook trong `notebooks/kaggle/`, tải file `.ipynb` từ GitHub và import vào Kaggle.
-2. Bật **GPU** và **Internet** cho notebook.
-3. Add Input bộ FewRel chứa `fewrel_dataset.json` hoặc `fewrel_all.json`: đủ **80 quan hệ × 700 mẫu = 56.000 mẫu**. Có thể upload file local từ `data/raw/` lên một Kaggle Dataset riêng.
-4. Chạy **Run All** hoặc lưu một phiên chạy toàn bộ notebook.
-5. Tải kết quả từ `/kaggle/working/results_m_5/`, `results_m_10/` hoặc `results_m_15/`.
+Bộ refactor chưa được chạy trên GPU Kaggle. Hai run FewRel seed 300 lịch sử đã
+hoàn thành theo log, không được tự trộn vào bộ cấu hình mới. Dữ liệu local FewRel:
+56.000/80 quan hệ; Wiki-ZSL: 93.383/113, khác Table 1 (94.383). Runner dừng trước
+train nếu lệch count, trừ khi người dùng cho phép và ghi rõ giải trình.
 
-Mỗi notebook tự cài các thư viện cần thiết, tải code/model và chứa script điều phối 5 runs. Không cần upload thư mục `model/`, `scripts/` hoặc PDF lên Kaggle. Chi tiết: [hướng dẫn Kaggle](docs/KAGGLE.md).
+Dùng FP32, batch 4, Adam; theo implementation BERT-large 1024. Giữ quy tắc entity
+mask token gốc+1 (chưa căn chỉnh WordPiece). Main metric theo tác giả, có sklearn
+macro bổ sung. Best chọn epoch bằng test F1; final là epoch 10. Không hứa trùng điểm báo.
 
-## Thiết lập thí nghiệm
+requirements-original.txt giữ bộ thư viện tác giả để tham khảo;
+requirements-kaggle.txt dùng runtime tương thích hiện đại. Ghi môi trường thực tế mỗi run.
+Xem [chi tiết giới hạn](docs/REPRODUCIBILITY.md).
 
-- Train chỉ dùng các quan hệ seen; test chỉ dùng m quan hệ unseen, hai tập nhãn rời nhau.
-- Mỗi m chạy 5 lần với seed khác nhau; không chọn run tốt nhất để đại diện cho cả thí nghiệm.
-- Adam; learning rate `5e-6`; batch train `4`; gamma `7.5`; alpha `0.4`; inner product.
-- BERT-large-cased và Sentence-BERT bert-large-nli-mean-tokens; vector quan hệ 1024 chiều, SBERT cố định.
-- 10 epoch theo lệnh chạy của code tác giả; FP32; gradient checkpointing để giảm VRAM.
-- Kết quả có cả **best epoch của từng run** theo cách script tác giả theo dõi, và **epoch cuối** để đối chiếu. `best` có sử dụng test F1 để chọn epoch.
-
-Báo không công bố bộ 5 seed gốc. Seed 300–304 là lựa chọn tái lập; không bảo đảm khớp điểm công bố. Có khác biệt giữa mô tả hidden size trong báo và BERT-large trong code tác giả. Xem [chi tiết tái lập](docs/REPRODUCIBILITY.md).
-
-## Đưa thay đổi lên GitHub
-
-Repo local đã có remote `origin`; chạy trong thư mục `BTL`:
-
-```powershell
-git status --short
-git diff --stat
-git add README.md .gitignore requirements-kaggle.txt notebooks docs
-git add -u -- zs-bert.ipynb 2021.naacl-main.272.pdf
-git diff --cached --stat
-git commit -m "Organize Kaggle notebooks for FewRel m=5,10,15 with five runs"
-git push origin main
-```
-
-Hai lệnh `git add` ghi nhận cả file mới và việc chuyển notebook/PDF cũ. Dataset, file cá nhân và checkpoint bị `.gitignore` loại khỏi staging. Kiểm tra `git diff --cached --stat` trước khi commit.
-
-Các notebook cố định code upstream tại commit `7a37cf51435b8ab8726d74ad1f9f374fbbae88b0`, thay vì clone phiên bản mới nhất. Vì vậy việc sắp xếp lại repo ở commit mới không làm thay đổi code dùng cho thí nghiệm. Muốn thay model/loss cho một thí nghiệm mới, cần cập nhật notebook và revision có chủ đích.
-
-## Tham khảo
-
-- [Bài báo trên ACL Anthology](https://aclanthology.org/2021.naacl-main.272/)
-- [PDF trong repo](docs/papers/2021.naacl-main.272.pdf)
-- [Mã nguồn tác giả](https://github.com/dinobby/ZS-BERT)
-- [Repository implementation](https://github.com/Student-persist-1919/zs-bert-simulation)
+Nguồn: [bài báo](https://aclanthology.org/2021.naacl-main.272/),
+[code tác giả](https://github.com/dinobby/ZS-BERT),
+[repo dự án](https://github.com/Student-persist-1919/zs-bert-simulation).

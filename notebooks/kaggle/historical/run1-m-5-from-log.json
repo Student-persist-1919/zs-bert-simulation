@@ -1,0 +1,132 @@
+{
+  "description": "Run 1 metrics extracted from the supplied Kaggle log; not an original notebook output or a training checkpoint.",
+  "source_log": "D:\\Downloads_D\\zs-bert-m-5.log",
+  "source_sha256": "a157b2b698629b66dcc755dc54bab700f7598602f5f7eca054ef2470a4706215",
+  "m": 5,
+  "seed": 300,
+  "completed_epochs_verified_from_log": 10,
+  "unit": "fraction_0_to_1",
+  "selection": "best is highest test F1 among the ten logged epochs",
+  "best": {
+    "epoch": 3,
+    "train_loss": 1.827390110125712,
+    "precision": 0.8004578472167496,
+    "recall": 0.8048571428571428,
+    "f1": 0.802651466998134,
+    "standard_macro_precision": 0.8004578472167496,
+    "standard_macro_recall": 0.8048571428571428,
+    "standard_macro_f1": 0.7917673119422948
+  },
+  "final": {
+    "epoch": 10,
+    "train_loss": 0.8734376427038706,
+    "precision": 0.7399006345466802,
+    "recall": 0.7505714285714286,
+    "f1": 0.7451978336458106,
+    "standard_macro_precision": 0.7399006345466802,
+    "standard_macro_recall": 0.7505714285714286,
+    "standard_macro_f1": 0.7155671151393306
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 6.385921196644647,
+      "precision": 0.7113646149332478,
+      "recall": 0.696,
+      "f1": 0.7035984374483137,
+      "standard_macro_precision": 0.7113646149332478,
+      "standard_macro_recall": 0.696,
+      "standard_macro_f1": 0.6971073846131915
+    },
+    {
+      "epoch": 2,
+      "train_loss": 2.5513599077150935,
+      "precision": 0.7148518358547278,
+      "recall": 0.7122857142857144,
+      "f1": 0.7135664680116246,
+      "standard_macro_precision": 0.7148518358547278,
+      "standard_macro_recall": 0.7122857142857144,
+      "standard_macro_f1": 0.689037574910064
+    },
+    {
+      "epoch": 3,
+      "train_loss": 1.827390110125712,
+      "precision": 0.8004578472167496,
+      "recall": 0.8048571428571428,
+      "f1": 0.802651466998134,
+      "standard_macro_precision": 0.8004578472167496,
+      "standard_macro_recall": 0.8048571428571428,
+      "standard_macro_f1": 0.7917673119422948
+    },
+    {
+      "epoch": 4,
+      "train_loss": 1.4707053976358402,
+      "precision": 0.7615904159651261,
+      "recall": 0.7537142857142858,
+      "f1": 0.7576318818780313,
+      "standard_macro_precision": 0.7615904159651261,
+      "standard_macro_recall": 0.7537142857142858,
+      "standard_macro_f1": 0.7202252947457377
+    },
+    {
+      "epoch": 5,
+      "train_loss": 1.2451994610794952,
+      "precision": 0.7900272549311177,
+      "recall": 0.7974285714285715,
+      "f1": 0.7937106593183557,
+      "standard_macro_precision": 0.7900272549311177,
+      "standard_macro_recall": 0.7974285714285715,
+      "standard_macro_f1": 0.7908789714232258
+    },
+    {
+      "epoch": 6,
+      "train_loss": 1.1682802085472004,
+      "precision": 0.7686701242398544,
+      "recall": 0.7825714285714286,
+      "f1": 0.7755584887942217,
+      "standard_macro_precision": 0.7686701242398544,
+      "standard_macro_recall": 0.7825714285714286,
+      "standard_macro_f1": 0.7725808742237141
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.9992216538205743,
+      "precision": 0.7489230562533727,
+      "recall": 0.7677142857142857,
+      "f1": 0.7582022587424575,
+      "standard_macro_precision": 0.7489230562533727,
+      "standard_macro_recall": 0.7677142857142857,
+      "standard_macro_f1": 0.7452283049258865
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.9140557259320681,
+      "precision": 0.7471080841428343,
+      "recall": 0.7608571428571429,
+      "f1": 0.7539199341317431,
+      "standard_macro_precision": 0.7471080841428343,
+      "standard_macro_recall": 0.7608571428571429,
+      "standard_macro_f1": 0.7411984422949656
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.9737243081735358,
+      "precision": 0.6772618248015606,
+      "recall": 0.73,
+      "f1": 0.702642711387208,
+      "standard_macro_precision": 0.6772618248015606,
+      "standard_macro_recall": 0.73,
+      "standard_macro_f1": 0.6832725198365082
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.8734376427038706,
+      "precision": 0.7399006345466802,
+      "recall": 0.7505714285714286,
+      "f1": 0.7451978336458106,
+      "standard_macro_precision": 0.7399006345466802,
+      "standard_macro_recall": 0.7505714285714286,
+      "standard_macro_f1": 0.7155671151393306
+    }
+  ]
+}

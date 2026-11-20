@@ -1,3 +1,14 @@
+# Lưu ý về phiên bản tài liệu
+
+Phần bên dưới mô tả **bộ notebook FewRel năm seed cũ**, lưu để truy nguyên.
+Bộ hiện tại dùng 3 notebook một seed/hai dataset, clone CODE_REV do người dùng
+chọn rồi ghi commit thực tế, không còn tự khóa upstream 7a37cf5.
+Hướng dẫn hiện hành: [KAGGLE_SINGLE_RUN.md](KAGGLE_SINGLE_RUN.md).
+Wiki-ZSL local 93.383/113 khác số mẫu báo; chưa xác minh nguồn tác giả end-to-end.
+Bộ refactor chưa chạy GPU; hai run seed 300 cũ có log hoàn thành.
+
+---
+
 # Thiết lập và giới hạn tái lập
 
 ## Phạm vi

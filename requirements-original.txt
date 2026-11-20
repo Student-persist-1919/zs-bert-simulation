@@ -1,0 +1,7 @@
+# Historical reference: https://github.com/dinobby/ZS-BERT/blob/master/requirements.txt
+# Do not install into the modern Kaggle Python/CUDA environment.
+torch==1.4.0
+torchvision==0.5.0
+transformers==2.3.0
+sentence-transformers==0.2.5.1
+scikit-learn==0.21.3

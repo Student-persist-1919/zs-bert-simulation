@@ -213,7 +213,7 @@ class WikiDataset(Dataset):
         self.property2idx = property2idx
         self.len = len(data)
         self.tokenizer = BertTokenizer.from_pretrained(
-            "bert-large-cased", do_lower_case=False
+            os.environ.get("ZS_BERT_TOKENIZER_PATH", "bert-large-cased"), do_lower_case=False
         )
 
     def __getitem__(self, idx):
@@ -254,7 +254,7 @@ class FewRelDataset(Dataset):
         self.property2idx = property2idx
         self.len = len(data)
         self.tokenizer = BertTokenizer.from_pretrained(
-            "bert-large-cased", do_lower_case=False
+            os.environ.get("ZS_BERT_TOKENIZER_PATH", "bert-large-cased"), do_lower_case=False
         )
         # Pre-cache tokenized items once to avoid re-tokenizing on CPU every epoch
         self._cache = [self._encode_item(i) for i in range(self.len)]

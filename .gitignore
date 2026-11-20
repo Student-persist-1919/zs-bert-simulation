@@ -40,3 +40,7 @@ aggregate_metrics.csv
 .ipynb_checkpoints/
 temp_zs_bert/
 *.tmp
+
+# Reviewed experiment evidence belongs in Git; model checkpoints remain ignored.
+!notebooks/kaggle/runs/**/train_seed_*.log
+!notebooks/kaggle/runs/**/attributes.npz
