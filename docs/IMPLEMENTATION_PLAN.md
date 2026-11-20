@@ -81,5 +81,6 @@ và bộ 30 runs đủ 10 epoch.
 
 Wiki-ZSL m=10 seed 300 tại commit b4b8420 cũng đã hoàn thành smoke test
 trên T4 (1 epoch, 412 train/40 test), theo notebook có output người dùng cung cấp.
-Đã lưu notebook nguyên bản vào executed/. Chưa nhận ZIP Wiki-ZSL; chênh lệch
-số mẫu chưa được giải quyết, GPU pause/resume và full runs vẫn chưa kiểm chứng.
+Đã lưu notebook nguyên bản vào executed/. ZIP Wiki-ZSL cũng đã nhận, đối chiếu
+CRC/hash/history/config thành công và lưu trong validation/; chênh lệch số mẫu
+chưa được giải quyết, GPU pause/resume và full runs vẫn chưa kiểm chứng.

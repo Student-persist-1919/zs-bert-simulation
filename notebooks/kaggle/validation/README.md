@@ -49,4 +49,19 @@ Hash xác nhận tính nhất quán file, không phải chữ ký xác thực ng
 - 412 train / 40 test, 103 batch; evaluation và status complete xuất thành công.
 - P/R/F1 smoke: 1.2346% / 2.5% / 1.6529%. Không đưa vào bảng so sánh bài báo.
 - Config hash `f4c3d4958b695f0cbd8b62fa63a2c7c74bc6612923954ef6dffd2d7ee3f26ea2`.
-- Chưa nhận ZIP Wiki-ZSL để đối chiếu manifest; chưa kiểm tra GPU pause/resume.
+- [ZIP Wiki-ZSL đã nhận](wikizsl_m10_seed300_smoke_evidence.zip), 443.502 byte.
+  SHA256 `5e66268924e42591a053f72211190129c12fdb8f0148f402a0a00d4c973e835a`.
+  CRC và tất cả hash trong manifest hợp lệ; config khớp chính xác notebook,
+  result/status/config khớp hash, history khớp và train/test rời nhau.
+- Chưa kiểm tra GPU pause/resume.
+
+## Bước kế tiếp: kiểm thử deadline thật
+
+[Notebook pause thử](fewrel_m10_pause_ready.ipynb) giữ code b4b8420 và FewRel smoke,
+đặt MAX_SESSION_HOURS=0.028 (~100,8 giây từ cell đầu). Theo lần thử trước,
+train bắt đầu khoảng 90 giây và hoàn tất khoảng 120 giây, nên ngân sách này dự
+kiến cắt ngang run. Thời gian khởi động biến động: phải xem status/next_step thực
+tế, không coi giá trị thời gian này là bảo đảm đã train đủ một số batch cụ thể.
+Nếu paused từ batch 0, cần thêm kiểm thử pause sau các bước Adam trước khi kết
+luận khả năng tiếp tục train giữa epoch đã được kiểm chứng.
+Giữ full output trên Kaggle, bao gồm checkpoint, để kiểm thử phiên resume riêng.
