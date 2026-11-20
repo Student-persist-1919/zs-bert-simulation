@@ -74,5 +74,7 @@ Không gộp kết quả khác cấu hình. Seed 300–304 là lựa chọn tái
 
 FewRel m=10 seed 300 tại commit b4b8420 đã hoàn thành 1 epoch/280 train/40 test
 trên Tesla T4, xuất evidence ZIP hợp lệ. Bằng chứng và kiểm tra nằm trong
-notebooks/kaggle/validation/. Chưa tính vào kết quả chính thức. Còn cần notebook
-đã chạy, smoke Wiki-ZSL, GPU pause/resume và bộ 30 runs đủ 10 epoch.
+notebooks/kaggle/validation/. Notebook có output đã được nhận và đối chiếu khớp
+evidence ZIP, lưu nguyên bản trong notebooks/kaggle/executed/.
+Chưa tính vào kết quả chính thức. Còn cần smoke Wiki-ZSL, GPU pause/resume
+và bộ 30 runs đủ 10 epoch.
