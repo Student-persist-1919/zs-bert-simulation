@@ -69,3 +69,10 @@ Không gộp kết quả khác cấu hình. Seed 300–304 là lựa chọn tái
 - Không tuyên bố snapshot đã xác minh giống dữ liệu tác giả. Chặn count Wiki-ZSL
   chưa được cho phép như trước. Notebook không cần dataset Input cho run mới.
 - Cần người dùng chạy lại smoke test Kaggle; test local chỉ xác nhận chuẩn bị dữ liệu.
+
+## Kết quả smoke test GPU sau bản sửa
+
+FewRel m=10 seed 300 tại commit b4b8420 đã hoàn thành 1 epoch/280 train/40 test
+trên Tesla T4, xuất evidence ZIP hợp lệ. Bằng chứng và kiểm tra nằm trong
+notebooks/kaggle/validation/. Chưa tính vào kết quả chính thức. Còn cần notebook
+đã chạy, smoke Wiki-ZSL, GPU pause/resume và bộ 30 runs đủ 10 epoch.
