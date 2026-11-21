@@ -13,6 +13,13 @@
 - Hướng dẫn hiện hành: KAGGLE_SINGLE_RUN.md. Phần kế hoạch/lịch sử bên dưới
   lưu các bước trước đây; yêu cầu chạy thử resume riêng đã được người dùng bỏ qua.
 
+### Cập nhật từ run thực tế
+
+FewRel m=10 seed 300 đã resume đầu epoch 10 và hoàn tất theo notebook người dùng
+cung cấp. Đã lưu nguyên bản experiments/executed/fewrel_m10_seed300_resumed.ipynb.
+Chờ ZIP để xác minh đầy đủ history và nhập bảng kết quả. Resume ở ranh giới epoch
+đã quan sát thành công trên T4; chưa xác minh resume giữa epoch của m=5.
+
 Phạm vi: tái lập ZS-BERT trong Table 2, hai dataset FewRel/Wiki-ZSL,
 m=5/10/15, mỗi cấu hình 5 seed 300–304, mỗi run 10 epoch.
 30 runs hoàn chỉnh có thể cần hơn 30 phiên Save & Run All (giới hạn 12 giờ).

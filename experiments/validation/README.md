@@ -55,3 +55,16 @@ Hash xác nhận tính nhất quán file, không phải chữ ký xác thực ng
 Người dùng chọn bỏ qua kiểm thử pause/resume riêng để chạy từng run chính thức.
 Đã xóa notebook cấu hình thử tạm; giữ ZIP, notebook đã thực thi và lịch sử lỗi.
 Cơ chế deadline/checkpoint vẫn tồn tại, nhưng GPU resume chưa được kiểm chứng.
+
+## Run chính thức FewRel m=10 seed 300: resume đã hoàn tất
+
+- [Notebook resume có output](../executed/fewrel_m10_seed300_resumed.ipynb),
+  SHA256 `aa5ba04fc72a72eb75ac2607621b394c0dccc52a3dc376c1042436c91868b59c`.
+- Code b4b84208cf43b4274f2d2aaaf14beead0daf4707, smoke=false, 10 epoch,
+  config hash `bfb265a1b6c225d89a455715c727a1fb9dbc6d701f6d476e737072b083d50218`.
+- Log xác nhận Resuming epoch 10, next batch 1; COMPLETE seed=300 và status complete.
+- Final epoch 10: P=50.8393%, R=52.7571%, F1=51.7805%; best F1 theo log=53.4837%.
+- Phiên resume mất 4489.619489 giây; Papermill exception=null.
+- Đây là bằng chứng resume trên GPU ở ranh giới epoch đã chạy được. Chưa kiểm tra
+  checkpoint giữa epoch m=5 hoặc so sánh toàn bộ trọng số với chạy không ngắt.
+- Chờ ZIP kết quả và link version để kiểm tra đủ history/checksum và nhập results.csv.
