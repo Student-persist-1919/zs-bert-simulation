@@ -18,6 +18,9 @@ wiki_all.json
 docs/local/
 *NLP.pdf
 
+# Files downloaded from Kaggle, awaiting validation/import into experiments/.
+/submissions_local/
+
 # Training artifacts / downloaded model weights
 results_m_*/
 zs_bert_m_*_sources/

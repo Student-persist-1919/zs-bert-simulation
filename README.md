@@ -44,9 +44,13 @@ BTL/
 Smoke test train/evaluate/export đã đạt trên T4 cho cả FewRel và Wiki-ZSL;
 [bằng chứng](experiments/validation/README.md) và [notebook có output](experiments/executed/).
 Theo yêu cầu người dùng, bỏ qua kiểm thử GPU pause/resume riêng để chạy chính thức.
-Cơ chế checkpoint/deadline vẫn được giữ. FewRel m=10 seed 300 đã resume đầu epoch 10
-và hoàn tất trên T4 theo notebook có output; đang chờ ZIP để nhập results.csv.
-Resume giữa epoch (m=5) chưa xác minh. Bảng kết quả hiện chưa nhập full run.
+Cập nhật 2026-11-23: đã nhập 5 run FewRel complete đủ 10 epoch:
+m=5 seeds 300, 302; m=10 seeds 300, 301, 302. FewRel m=5 seed 301 còn paused.
+Resume tại ranh giới epoch và giữa epoch đã hoàn tất trên T4 theo evidence,
+history và notebook có output. Đây là kiểm tra các phiên thực tế, chưa chứng minh
+resume cho kết quả giống từng bit với một phiên chạy liên tục.
+Chưa nhóm nào đủ 5 seed để tính trung bình. Xem [hồ sơ](experiments/README.md)
+và [notebook cùng link từng version Kaggle](experiments/executed/README.md).
 
 Snapshot FewRel: 56.000 mẫu/80 quan hệ. Snapshot Wiki-ZSL: 93.383/113, khác
 Table 1 (94.383). Notebook cho phép chạy snapshot Wiki-ZSL và ghi rõ discrepancy

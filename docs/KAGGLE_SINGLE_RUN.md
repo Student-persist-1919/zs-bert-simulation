@@ -16,6 +16,10 @@ pause/resume riêng; không có bước thử bổ sung bắt buộc trước kh
 7. Tăng RUN_ID, tạo version/session mới; sau 5 run đổi dataset. Lặp cho cả 3 m.
    Cần 30 runs hoàn chỉnh; một run paused chưa tính hoàn thành.
 
+Kaggle báo phiên `successful` chỉ nghĩa là notebook kết thúc không lỗi.
+Luôn kiểm tra `status.json`: chỉ `status="complete"` và history đủ epochs 1–10
+mới tính là một run hoàn thành; `paused` vẫn phải tiếp tục cùng RUN_ID.
+
 Tệp kết quả cũ trích log không được tự gộp; các run chính thức mới có hash riêng.
 Nếu sửa cell cấu hình, sửa giá trị tại dòng hiện có; không dán thêm biến trùng tên.
 
@@ -81,5 +85,7 @@ Metric chính theo tác giả; thêm sklearn macro để kiểm tra. Best dùng 
 epoch; final là epoch 10. Không tuyên bố trùng kết quả báo hay runtime 2021.
 
 30 runs tương ứng 2 datasets × 3 m × 5 seeds; có thể cần hơn 30 Save Versions.
-Đã có smoke GPU cả hai dataset; chưa có full run 10 epoch của bộ mới.
-GPU pause/resume chưa kiểm chứng; người dùng chọn bỏ qua bước kiểm thử riêng này.
+Đã có smoke GPU cả hai dataset. Ngày 2026-11-23, đã nhập 5 full run FewRel
+complete và một run paused; xem [hồ sơ hiện tại](../experiments/README.md).
+Resume ở đầu epoch và giữa epoch đã hoàn tất trên T4 trong các run chính thức.
+Không suy ra tương đương từng bit với chạy liên tục từ kiểm tra này.

@@ -5,7 +5,12 @@ Bộ hiện tại dùng 3 notebook một seed/hai dataset, clone CODE_REV do ng�
 chọn rồi ghi commit thực tế, không còn tự khóa upstream 7a37cf5.
 Hướng dẫn hiện hành: [KAGGLE_SINGLE_RUN.md](KAGGLE_SINGLE_RUN.md).
 Wiki-ZSL local 93.383/113 khác số mẫu báo; chưa xác minh nguồn tác giả end-to-end.
-Bộ refactor chưa chạy GPU; hai run seed 300 cũ có log hoàn thành.
+Bộ refactor hiện đã qua smoke GPU cả hai dataset và có full runs FewRel.
+Ngày 2026-11-23 đã nhập 5 run complete đủ 10 epoch và một run paused.
+Resume thực tế trên T4 đã hoàn tất ở ranh giới epoch và giữa epoch; chưa kiểm tra
+tương đương từng bit với chạy liên tục. Xem [hồ sơ hiện tại](../experiments/README.md)
+và [notebook cùng link Kaggle](../experiments/executed/README.md).
+Các câu về trạng thái chưa chạy GPU ở phần lịch sử bên dưới là ghi nhận trước đây.
 
 ---
 

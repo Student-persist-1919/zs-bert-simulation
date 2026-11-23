@@ -1,0 +1,4 @@
+# Evidence manifests and notebook records contain SHA256 of the original bytes.
+# Preserve these bytes on Windows checkouts instead of converting LF to CRLF.
+experiments/runs/** -text
+experiments/executed/*.ipynb -text

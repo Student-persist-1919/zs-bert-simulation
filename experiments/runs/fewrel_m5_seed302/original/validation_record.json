@@ -1,0 +1,44 @@
+{
+  "validated_on": "2026-11-23",
+  "dataset": "fewrel",
+  "m": 5,
+  "run_id": 3,
+  "seed": 302,
+  "status": "complete",
+  "config_hash": "e50257e826a56c5380cae9267ff4033496669e1782fe15893527ac62ee6ca560",
+  "checks": [
+    "ZIP CRC and manifest SHA256",
+    "scientific config hash and dataset/m/seed",
+    "notebook CONFIG/STATUS against evidence",
+    "notebook epoch metrics against evidence history",
+    "completed history epochs 1–10, disjoint split, best/final consistency when complete"
+  ],
+  "notebooks": [
+    {
+      "destination": "experiments/executed/fewrel_m5_seed302_complete.ipynb",
+      "status": "complete",
+      "url": "https://www.kaggle.com/code/nqmmoc/zs-bert-m-5?scriptVersionId=372830890",
+      "sha256": "fee0a8b4fe0de4f4906d70d9611800a60d9b6d1e3bec3056d5fa074874119011",
+      "evaluated_epochs": [
+        10
+      ]
+    },
+    {
+      "destination": "experiments/executed/fewrel_m5_seed302_paused.ipynb",
+      "status": "paused",
+      "url": "https://www.kaggle.com/code/nqmmoc/zs-bert-m-5?scriptVersionId=372501883",
+      "sha256": "0ba3fdf2d1f65e9aac573fc21bbf0bc4ea1b178d84ddcaf8ee9fbef305202cf2",
+      "evaluated_epochs": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    }
+  ]
+}

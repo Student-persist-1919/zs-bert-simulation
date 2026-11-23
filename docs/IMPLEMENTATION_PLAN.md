@@ -15,10 +15,14 @@
 
 ### Cập nhật từ run thực tế
 
-FewRel m=10 seed 300 đã resume đầu epoch 10 và hoàn tất theo notebook người dùng
-cung cấp. Đã lưu nguyên bản experiments/executed/fewrel_m10_seed300_resumed.ipynb.
-Chờ ZIP để xác minh đầy đủ history và nhập bảng kết quả. Resume ở ranh giới epoch
-đã quan sát thành công trên T4; chưa xác minh resume giữa epoch của m=5.
+Ngày 2026-11-23 đã kiểm tra và nhập evidence chính thức cho FewRel:
+m=5 seeds 300, 302 complete; m=10 seeds 300, 301, 302 complete;
+m=5 seed 301 còn paused. `results.csv` ghi rõ trạng thái, chưa tổng hợp mean
+khi chưa đủ 5 seed. Notebook mỗi phiên và link Kaggle nằm trong
+[experiments/executed](../experiments/executed/README.md).
+Resume ở ranh giới epoch và giữa epoch đã hoàn tất trên T4; history của phiên
+complete giữ các epoch trước pause. Chưa kiểm tra tương đương từng bit với một
+phiên chạy liên tục. Các trạng thái cũ bên dưới được giữ như lịch sử triển khai.
 
 Phạm vi: tái lập ZS-BERT trong Table 2, hai dataset FewRel/Wiki-ZSL,
 m=5/10/15, mỗi cấu hình 5 seed 300–304, mỗi run 10 epoch.
