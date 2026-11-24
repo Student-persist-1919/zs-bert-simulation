@@ -25,7 +25,7 @@ Mỗi notebook dùng được cho cả DATASET="fewrel" và DATASET="wikizsl".
 BTL/
 ├── notebooks/
 │   ├── kaggle/          # Chỉ 3 notebook chính, results.csv, RESULTS.md
-│   └── archive/         # Notebook implementation cũ, giữ truy nguyên
+│   └── archive/         # Giữ notebook cũ, gồm five-runs/ cho m=5/10/15
 ├── experiments/
 │   ├── runs/            # Evidence chính thức theo run/attempt (tạo khi nhập ZIP)
 │   ├── executed/        # Notebook đã chạy, có output
@@ -37,7 +37,7 @@ BTL/
 ├── docs/                # Kế hoạch, hướng dẫn, giới hạn và bài báo
 ├── tests/               # Kiểm tra local
 ├── data/raw/            # Dữ liệu local, không commit
-└── submissions_local/   # ZIP/notebook tải về; chỉ tạo thư mục khi có kết quả
+└── submissions_local/   # Khung 30 run; giữ ZIP, notebook, link và nhận xét local
 ```
 
 ## Trạng thái và giới hạn

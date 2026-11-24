@@ -35,7 +35,11 @@ toàn bộ history. Attempt paused chưa hoàn thành vẫn được lưu, khôn
 
 Thư mục gom `submissions_local/` chỉ dùng local và được `.gitignore` bỏ qua.
 Các file đã kiểm tra được sao chép sang `experiments/` để giáo viên theo dõi.
-Chỉ tạo `submissions_local/<dataset>/m<m>/run_<id>/` khi có file hoặc link thực tế;
-không dựng trước thư mục trống cho toàn bộ 30 run. Giữ ZIP gốc ở local để kiểm tra
-lại nguồn và checksum; giữ các attempt paused, notebook cũ và hồ sơ historical/archive
-để truy nguyên. Cache `__pycache__/` có thể xóa và được Python tạo lại khi cần.
+Giữ sẵn khung `submissions_local/<dataset>/m<m>/run_<id>/` cho cả 30 run:
+FewRel/Wiki-ZSL × m=5/10/15 × run 1–5, kể cả thư mục đang chờ kết quả.
+Mỗi run có mẫu `links.txt` để lưu nguồn và ghi chú; giữ các file nhận xét, kiểm tra
+để tổng hợp sau cùng. Giữ ZIP gốc để đối chiếu nguồn và checksum, các attempt
+paused, notebook cũ và hồ sơ historical/archive để truy nguyên. Các notebook
+`notebooks/archive/five-runs/` cho m=5/10/15 cũng được giữ nguyên.
+Khi dọn dự án, giữ thư mục phục vụ kết quả, nhận xét và tổng hợp dù chưa có kết quả;
+cache `__pycache__/` có thể xóa và được Python tạo lại khi cần.
