@@ -15,9 +15,9 @@
 
 ### Cập nhật từ run thực tế
 
-Ngày 2026-11-23 đã kiểm tra và nhập evidence chính thức cho FewRel:
-m=5 seeds 300, 302 complete; m=10 seeds 300, 301, 302 complete;
-m=5 seed 301 còn paused. `results.csv` ghi rõ trạng thái, chưa tổng hợp mean
+Ngày 2026-11-24 đã kiểm tra và nhập evidence chính thức cho FewRel:
+m=5 và m=10 đều có seeds 300, 301, 302 complete (6 runs).
+Các attempt paused được giữ để truy nguyên. `results.csv` ghi rõ trạng thái, chưa tổng hợp mean
 khi chưa đủ 5 seed. Notebook mỗi phiên và link Kaggle nằm trong
 [experiments/executed](../experiments/executed/README.md).
 Resume ở ranh giới epoch và giữa epoch đã hoàn tất trên T4; history của phiên

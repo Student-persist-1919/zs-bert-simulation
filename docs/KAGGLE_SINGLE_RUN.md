@@ -85,7 +85,7 @@ Metric chính theo tác giả; thêm sklearn macro để kiểm tra. Best dùng 
 epoch; final là epoch 10. Không tuyên bố trùng kết quả báo hay runtime 2021.
 
 30 runs tương ứng 2 datasets × 3 m × 5 seeds; có thể cần hơn 30 Save Versions.
-Đã có smoke GPU cả hai dataset. Ngày 2026-11-23, đã nhập 5 full run FewRel
-complete và một run paused; xem [hồ sơ hiện tại](../experiments/README.md).
+Đã có smoke GPU cả hai dataset. Ngày 2026-11-24, đã nhập 6 full run FewRel
+complete; các attempt paused được giữ riêng; xem [hồ sơ hiện tại](../experiments/README.md).
 Resume ở đầu epoch và giữa epoch đã hoàn tất trên T4 trong các run chính thức.
 Không suy ra tương đương từng bit với chạy liên tục từ kiểm tra này.

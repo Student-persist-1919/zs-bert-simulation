@@ -1,0 +1,45 @@
+{
+  "validated_on": "2026-11-24",
+  "dataset": "fewrel",
+  "m": 5,
+  "run_id": 2,
+  "seed": 301,
+  "status": "complete",
+  "config_hash": "e50257e826a56c5380cae9267ff4033496669e1782fe15893527ac62ee6ca560",
+  "checks": [
+    "ZIP CRC and manifest SHA256",
+    "scientific config and notebook CONFIG/STATUS",
+    "notebook evaluations match evidence",
+    "paused history preserved exactly in complete history; provenance session prefix retained",
+    "complete history epochs 1-10, split and best/final validated"
+  ],
+  "notebooks": [
+    {
+      "destination": "experiments/executed/fewrel_m5_seed301_rerun_paused.ipynb",
+      "status": "paused",
+      "url": "https://www.kaggle.com/code/ncmanh/zs-bert-m-5?scriptVersionId=373040913",
+      "sha256": "e2d281845bbb6e24c4f020e3c972b66bd139c719796b9440706ba8dd44b2e841",
+      "evaluated_epochs": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "destination": "experiments/executed/fewrel_m5_seed301_complete.ipynb",
+      "status": "complete",
+      "url": "https://www.kaggle.com/code/ncmanh/zs-bert-m-5?scriptVersionId=373286661",
+      "sha256": "10a500bfa4f9fde5049ef75124547dbd194f0775bd581ffcdff5ab828e18ff0d",
+      "evaluated_epochs": [
+        10
+      ]
+    }
+  ],
+  "note": "Replacement execution on ncmanh started from scratch, then resumed. Original nqmmoc paused attempt retained; only replacement complete counts."
+}

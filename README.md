@@ -44,8 +44,8 @@ BTL/
 Smoke test train/evaluate/export đã đạt trên T4 cho cả FewRel và Wiki-ZSL;
 [bằng chứng](experiments/validation/README.md) và [notebook có output](experiments/executed/).
 Theo yêu cầu người dùng, bỏ qua kiểm thử GPU pause/resume riêng để chạy chính thức.
-Cập nhật 2026-11-23: đã nhập 5 run FewRel complete đủ 10 epoch:
-m=5 seeds 300, 302; m=10 seeds 300, 301, 302. FewRel m=5 seed 301 còn paused.
+Cập nhật 2026-11-24: đã nhập 6 run FewRel complete đủ 10 epoch:
+m=5 và m=10 đều có seeds 300, 301, 302. Các attempt paused được giữ để truy nguyên.
 Resume tại ranh giới epoch và giữa epoch đã hoàn tất trên T4 theo evidence,
 history và notebook có output. Đây là kiểm tra các phiên thực tế, chưa chứng minh
 resume cho kết quả giống từng bit với một phiên chạy liên tục.

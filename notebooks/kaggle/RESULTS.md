@@ -10,4 +10,4 @@ Chưa tổng hợp: cần đúng một kết quả cho mỗi seed 300–304; hi�
 
 ## fewrel, m=5, config e50257e826a5
 
-Chưa tổng hợp: cần đúng một kết quả cho mỗi seed 300–304; hiện có [300, 302].
+Chưa tổng hợp: cần đúng một kết quả cho mỗi seed 300–304; hiện có [300, 301, 302].

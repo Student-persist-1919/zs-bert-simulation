@@ -31,6 +31,12 @@ Seed 300–304 tương ứng RUN_ID 1–5. Một phiên resume vẫn thuộc cù
 - paused: [notebook](fewrel_m5_seed301_paused.ipynb) · [Kaggle version](https://www.kaggle.com/code/nqmmoc/zs-bert-m-5?scriptVersionId=372030027)
 - [Evidence và kiểm tra](../runs/fewrel_m5_seed301/original/validation_record.json)
 
+- rerun paused: [notebook](fewrel_m5_seed301_rerun_paused.ipynb) · [Kaggle version](https://www.kaggle.com/code/ncmanh/zs-bert-m-5?scriptVersionId=373040913)
+- complete: [notebook](fewrel_m5_seed301_complete.ipynb) · [Kaggle version](https://www.kaggle.com/code/ncmanh/zs-bert-m-5?scriptVersionId=373286661)
+- [Evidence và kiểm tra cặp mới](../runs/fewrel_m5_seed301/rerun_resumed/validation_record.json)
+
+Cặp ncmanh chạy lại từ đầu rồi resume; bản pause nqmmoc cũ giữ riêng, không ghép history. Chỉ một kết quả complete của seed 301 được tính.
+
 ## fewrel, m=5, run 3 (seed 302)
 
 - paused: [notebook](fewrel_m5_seed302_paused.ipynb) · [Kaggle version](https://www.kaggle.com/code/nqmmoc/zs-bert-m-5?scriptVersionId=372501883)

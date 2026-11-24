@@ -11,9 +11,9 @@ Theo yêu cầu người dùng, bỏ qua bước kiểm thử pause/resume riên
 Cơ chế checkpoint/deadline được giữ và đã quan sát resume thành công trên T4
 trong các run chính thức. Chưa kiểm tra tương đương từng bit với chạy liên tục.
 
-## Bằng chứng đã nhập ngày 2026-11-23
+## Bằng chứng đã nhập ngày 2026-11-24
 
-- FewRel m=5: seed 300 và 302 complete; seed 301 paused, chưa có điểm cuối.
+- FewRel m=5: seeds 300, 301, 302 complete. Seed 301 dùng cặp chạy lại/resume trên ncmanh; bản paused cũ được giữ.
 - FewRel m=10: seeds 300, 301, 302 complete.
 - Chưa nhóm nào đủ seeds 300–304, nên chưa tính trung bình 5 runs.
 - Wiki-ZSL và m=15 chưa có full run được nhập; smoke test được giữ riêng.

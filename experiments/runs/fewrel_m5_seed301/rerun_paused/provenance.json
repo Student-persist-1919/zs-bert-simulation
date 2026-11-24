@@ -1,0 +1,43 @@
+{
+  "commit": "b4b84208cf43b4274f2d2aaaf14beead0daf4707",
+  "source": "project snapshot from BTL data/raw",
+  "dataset_source_metadata": {
+    "filename": "fewrel_dataset.json.gz",
+    "raw_sha256": "85c2595bf743c203c22e78868f5a9f309ad726aa27c36e804554d99461736e19",
+    "archive_sha256": "870cc35e03d9441f8b6046f3400874a6510246866e846bfba8a08b44a544c819",
+    "raw_bytes": 20970508,
+    "samples": 56000,
+    "relations": 80,
+    "source": "project snapshot from BTL data/raw",
+    "author_reference": "https://drive.google.com/file/d/1QY-5R2zqLPnT5DDF5phTbSvEeBkQRh7A/view",
+    "author_identity_verified": false
+  },
+  "source_id": "1QY-5R2zqLPnT5DDF5phTbSvEeBkQRh7A",
+  "raw_data_sha256": "85c2595bf743c203c22e78868f5a9f309ad726aa27c36e804554d99461736e19",
+  "samples": 56000,
+  "relations": 80,
+  "paper_samples": 56000,
+  "count_discrepancy": false,
+  "python": "3.13.16 (main, Oct  1 2026, 15:40:24) [GCC 13.3.0]",
+  "cuda": "13.0",
+  "packages": {
+    "torch": "2.11.0+cu130",
+    "transformers": "4.57.3",
+    "sentence-transformers": "5.2.0",
+    "tokenizers": "0.22.2",
+    "numpy": "2.1.3",
+    "scikit-learn": "1.6.1"
+  },
+  "gpu": "Tesla T4",
+  "seed": 301,
+  "dataset": "fewrel",
+  "m": 5,
+  "smoke": false,
+  "sessions": [
+    {
+      "commit": "b4b84208cf43b4274f2d2aaaf14beead0daf4707",
+      "started_unix": 1795436485.1692913,
+      "resumed": false
+    }
+  ]
+}
