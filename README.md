@@ -36,7 +36,8 @@ BTL/
 ├── resources/datasets/  # Snapshot JSON nén và SHA256
 ├── docs/                # Kế hoạch, hướng dẫn, giới hạn và bài báo
 ├── tests/               # Kiểm tra local
-└── data/raw/            # Dữ liệu local, không commit
+├── data/raw/            # Dữ liệu local, không commit
+└── submissions_local/   # ZIP/notebook tải về; chỉ tạo thư mục khi có kết quả
 ```
 
 ## Trạng thái và giới hạn

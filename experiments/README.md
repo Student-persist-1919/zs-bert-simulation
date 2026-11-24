@@ -18,6 +18,14 @@ trong các run chính thức. Chưa kiểm tra tương đương từng bit với
 - Chưa nhóm nào đủ seeds 300–304, nên chưa tính trung bình 5 runs.
 - Wiki-ZSL và m=15 chưa có full run được nhập; smoke test được giữ riêng.
 
+Kiểm tra lại ngày 2026-11-24: đủ run 1–3 (seeds 300–302) cho từng m=5 và m=10.
+Cả 6 kết quả complete đều đủ epoch 1–10; best/final, split seen/unseen và CSV khớp
+bằng chứng. Đã đối chiếu CRC/SHA256 của 8 ZIP attempt gốc với file đã nhập và
+SHA256 của 12 notebook chính thức có output; CONFIG/STATUS và các dòng EVALUATION
+khớp bằng chứng của phiên tương ứng, không có output lỗi thực thi.
+Cặp seed 301 m=5 chạy lại/resume giữ nguyên prefix history và provenance.
+Hai attempt paused không được đếm thành run complete; mỗi m vẫn còn thiếu run 4–5.
+
 [Mục lục notebook và link từng phiên Kaggle](executed/README.md).
 Mỗi thư mục `runs/<dataset>_m<m>_seed<seed>/original/` giữ nguyên bằng chứng
 đã giải nén, `import_record.json` ghi link version và SHA256 ZIP;
@@ -27,3 +35,7 @@ toàn bộ history. Attempt paused chưa hoàn thành vẫn được lưu, khôn
 
 Thư mục gom `submissions_local/` chỉ dùng local và được `.gitignore` bỏ qua.
 Các file đã kiểm tra được sao chép sang `experiments/` để giáo viên theo dõi.
+Chỉ tạo `submissions_local/<dataset>/m<m>/run_<id>/` khi có file hoặc link thực tế;
+không dựng trước thư mục trống cho toàn bộ 30 run. Giữ ZIP gốc ở local để kiểm tra
+lại nguồn và checksum; giữ các attempt paused, notebook cũ và hồ sơ historical/archive
+để truy nguyên. Cache `__pycache__/` có thể xóa và được Python tạo lại khi cần.
